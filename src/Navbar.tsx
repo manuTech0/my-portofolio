@@ -8,7 +8,7 @@ type LiType = {
 } & React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 function NavItem({ children, ...props }: LiType) {
     return (
-        <li {...props} className="transform-gpu hover:scale-110 hover:border-yellow-400 hover:cursor-pointer border-white border-b-2">
+        <li {...props} className="transform-gpu hover:scale-110 hover:border-yellow-400 active:scale-110 active:border-yellow-400 cursor-pointer border-white border-b-2">
             <a>{children}</a>
         </li>
     )
@@ -20,7 +20,7 @@ export default function Navbar({ componentsRef, scrollToComponents }: {
 }) {
     return (
         <motion.div 
-            className="h-10 flex justify-end items-center mx-10 sm:mx-0"
+            className="h-10 flex justify-end items-center md:mx-10 sm:mx-0"
             initial={{ y:-50, opacity: 0 }}
             animate={{ y:0, opacity: 100 }}
             transition={{ duration: 0.5 }}

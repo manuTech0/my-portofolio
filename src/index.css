@@ -126,6 +126,33 @@
   background: radial-gradient(circle,rgba(9, 14, 54, 1) 0%, rgba(0, 0, 43, 1) 59%, rgba(0, 2, 26, 1) 100%);
 }
 
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60% {
+    content: '...';
+  }
+  80%, 100% {
+    content: '';
+  }
+}
+
+.typing-dots::after {
+  content: '';
+  animation: dots 2s steps(1, end) infinite;
+  display: inline-block;
+  white-space: pre;
+}
+
+.text-gradient-hover {
+  background: #d1dee3;
+background: linear-gradient(90deg, rgba(209, 222, 227, 1) 0%, rgba(212, 182, 51, 1) 24%, rgba(233, 242, 237, 1) 50%, rgba(212, 182, 51, 1) 77%, rgba(232, 230, 209, 1) 100%);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

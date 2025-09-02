@@ -41,7 +41,7 @@ function App() {
       };
       const div = divRef.current
       const heightDiv = div.scrollHeight
-      document.body.style.height = heightDiv + 200 + "px"
+      document.body.style.height = heightDiv + 300 + "px"
       const handleScroll = () => {
         const scrollY = window.scrollY
         div.scrollTop = scrollY
@@ -59,15 +59,18 @@ function App() {
       <Helmet>
         <title>Maulana N | Portofolio</title>
       </Helmet>
-      <div className="lg:px-10 md:px-10 bg-color-gradient fixed top-0 left-0 w-screen h-screen">
+      <div className="lg:px-10 md:px-10 bg-color-gradient fixed top-0 left-0 w-screen h-dvh">
         {!imageLoaded && (
-        <div className="h-screen w-screen z-10 absolute top-0 left-0 flex justify-center items-center">
-          <Loader /> Loading 
+        <div className="h-dvh w-screen z-[200] bg-color-gradient absolute top-0 left-0 flex justify-center items-center flex-col">
+          <div className="animate-bounce">
+            <h1 className="flex"><Loader className="animate-spin me-2 "/> <span className="typing-dots">Loading</span></h1>
+          </div>
+          <p>We're getting things ready. Please hold on.</p>
         </div>
         )}
         {imageLoaded && (
           <motion.div 
-            className="h-screen w-full px-10 pb-7 pt-5 flex flex-col"
+            className="h-dvh w-full px-10 pb-7 pt-5 flex flex-col"
             style={{
               backgroundImage: `url("/corner-ts.svg")`,
               backgroundRepeat: "no-repeat"
@@ -96,10 +99,10 @@ function App() {
               transition={{ duration: 0.5 }}
             >
               <ul className="flex justify-around gap-4 mb-2 text-md items-center me-4 text-gray-700">
-                  <li className=" border-gray-700 border-b-2 hover:text-yellow-400 cursor-pointer transform-gpu hover:-translate-y-2">
+                  <li className=" border-gray-700 border-b-2 hover:text-yellow-400 active:text-yellow-400 cursor-pointer transform-gpu hover:-translate-y-2 active:-translate-y-2">
                     <a href="https://github.com/manuTech0" target="_blank"><GithubIcon /></a>
                   </li>
-                  <li className=" border-gray-700 border-b-2 hover:text-yellow-400 cursor-pointer transform-gpu hover:-translate-y-2">
+                  <li className=" border-gray-700 border-b-2 hover:text-yellow-400 active:text-yellow-400 cursor-pointer transform-gpu hover:-translate-y-2 active:-translate-y-2">
                     <a href="mailto:maulananurfanoto10@gmail.com" target="_blank"><Mail /></a>
                   </li>
               </ul>
