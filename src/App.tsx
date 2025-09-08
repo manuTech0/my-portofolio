@@ -57,7 +57,13 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Maulana N | Portofolio</title>
+        <title>Portofolio | Maulana N</title>
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="todo-list" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Helmet>
       <div className="lg:px-10 md:px-10 bg-color-gradient fixed top-0 left-0 w-screen h-dvh">
         {!imageLoaded && (
