@@ -115,9 +115,6 @@
     --font-chocolate:  "Chocolate Classical Sans", sans-serif;
     --font-sriracha: "Sriracha", cursive;
 }
-body {
-  font-family: 'Poppins', sans-serif;
-}
 
 .text-title-gradient {
     background: #c2855d;
@@ -157,6 +154,28 @@ background: linear-gradient(90deg, rgba(209, 222, 227, 1) 0%, rgba(212, 182, 51,
 }
 
 @layer base {
+  @font-face {
+    font-family: "Chocolate Classical Sans";
+    src: url("/fonts/chocolate-classical-sans.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Sriracha";
+    src: url("/fonts/sriracha.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Poppins";
+    src: url("/fonts/poppins.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
   * {
     @apply border-border outline-ring/50;
     }
