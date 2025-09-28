@@ -12,10 +12,9 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: [
-      "*.ngrok-free.app",
-      "localhost",
-      "8c8e1afbb7d1.ngrok-free.app"
-    ]
+    proxy: {
+      "/api": "http://localhost:3000"
+    },
+    allowedHosts: true
   }
 })

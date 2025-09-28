@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Navbar from "./Navbar"
 import { useImagePreload } from "./components/imgaePreload"
 import { GithubIcon, Loader, Mail } from "lucide-react"
@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet-async"
 
 function App() {
   const [loadDiv, setLoadDiv] = useState(false)
-  const imageLoaded = useImagePreload(["/corner-ts.svg", "/corner-be.svg"])
+  const imageLoaded = useImagePreload(["/corner-ts.svg", "/corner-be.svg", "/my-avatar.png", "/web-todolist.png"])
   const divRef = useRef<HTMLDivElement | null>(null)
   const componentsRef: componentsRef = {
     homeRef: useRef<HTMLElement | null>(null),
@@ -33,8 +33,8 @@ function App() {
     setLoadDiv(true)
   }, [])
 
-  useLayoutEffect(() => {
-    setTimeout(() => {
+  useEffect(() => {
+    // setTimeout(() => {
       if(!divRef.current) {
         console.log("div is null")
         return
@@ -51,8 +51,8 @@ function App() {
         window.removeEventListener("scroll", handleScroll)
         document.body.style.height = "auto"
       }
-    }, 200)
-  }, [loadDiv])
+    // }, 200)
+  }, [loadDiv, imageLoaded])
 
   return (
     <>
