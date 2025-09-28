@@ -115,6 +115,9 @@
     --font-chocolate:  "Chocolate Classical Sans", sans-serif;
     --font-sriracha: "Sriracha", cursive;
 }
+body {
+  font-family: 'Poppins', sans-serif;
+}
 
 .text-title-gradient {
     background: #c2855d;

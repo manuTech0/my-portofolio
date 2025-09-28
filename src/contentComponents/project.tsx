@@ -38,7 +38,8 @@ export default function Projects(
 						{...(inViewCard1 && { animate: { y: 0, opacity: 1 } })}
 						transition={{ duration: 0.6, delay: 0.4 }}
 						src="/web-todolist.webp"
-						alt="todo list"
+						alt="todo list project"
+                        loading="eager"
 						className="sm:h-full sm:w-auto w-full h-auto border-2 rounded-lg border-black shadow-lg"
 					/>
 					<motion.div className="max-w-lg">
@@ -72,7 +73,8 @@ export default function Projects(
 						{...(inViewCard2 && { animate: { y: 0, opacity: 1 } })}
 						transition={{ duration: 0.6, delay: 0.4 }}
 						src="/web-blog.webp"
-						alt="blog"
+						alt="blog app project"
+                        loading="eager"
 						className="sm:h-full sm:w-auto w-full h-auto border-2 rounded-lg border-black shadow-lg"
 					/>
 					<motion.div className="max-w-lg">
