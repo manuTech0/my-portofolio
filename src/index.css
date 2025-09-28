@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sriracha&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sriracha&display=swap'); */
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -126,6 +126,7 @@
   background: radial-gradient(circle,rgba(9, 14, 54, 1) 0%, rgba(0, 0, 43, 1) 59%, rgba(0, 2, 26, 1) 100%);
 }
 
+
 @keyframes dots {
   0%, 20% {
     content: '.';
@@ -150,36 +151,16 @@
 
 .text-gradient-hover {
   background: #d1dee3;
-background: linear-gradient(90deg, rgba(209, 222, 227, 1) 0%, rgba(212, 182, 51, 1) 24%, rgba(233, 242, 237, 1) 50%, rgba(212, 182, 51, 1) 77%, rgba(232, 230, 209, 1) 100%);
+  background: linear-gradient(90deg, rgba(209, 222, 227, 1) 0%, rgba(212, 182, 51, 1) 24%, rgba(233, 242, 237, 1) 50%, rgba(212, 182, 51, 1) 77%, rgba(232, 230, 209, 1) 100%);
 }
 
 @layer base {
-  @font-face {
-    font-family: "Chocolate Classical Sans";
-    src: url("/fonts/chocolate-classical-sans.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Sriracha";
-    src: url("/fonts/sriracha.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Poppins";
-    src: url("/fonts/poppins.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
 
   * {
     @apply border-border outline-ring/50;
     }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-poppins);
     }
 }

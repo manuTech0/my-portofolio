@@ -2,10 +2,6 @@ import React, { lazy, Suspense, useEffect, useRef, useState } from "react"
 import Navbar from "./Navbar"
 import { useImagePreload } from "./components/imgaePreload"
 import { GithubIcon, Loader, Mail } from "lucide-react"
-// import Home from "./contentComponents/home"
-// import About from "./contentComponents/about"
-// import Projects from "./contentComponents/project"
-// import Contact from "./contentComponents/contact"
 import type { componentsRef } from "./lib/types"
 import { motion } from "framer-motion"
 import { Helmet } from "react-helmet-async"
@@ -69,28 +65,10 @@ function App() {
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="descripton" content="Portofolio Maulana Nurfanoto, Backend Specialist and IT Consultant" />
         <link rel="canonical" href="https://www.manu-tech.my.id/" />
-        <link
-          rel="preload"
-          as="font"
-          href="/fonts/chocolate-classical-sans.woff2"
-          type="font/woff2"
-          crossOrigin=""
-        />
-        <link
-          rel="preload"
-          as="font"
-          href="/fonts/sriracha.woff2"
-          type="font/woff2"
-          crossOrigin=""
-        />
-        <link
-          rel="preload"
-          as="font"
-          href="/fonts/poppins.woff2"
-          type="font/woff2"
-          crossOrigin=""
-        />
-
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Golos+Text:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sriracha&display=swap" rel="stylesheet" />
+        <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecg.woff2" as="font" type="font/woff2" crossOrigin=""/>
       </Helmet>
       <div className="lg:px-10 md:px-10 bg-color-gradient fixed top-0 left-0 w-screen h-dvh">
         {!imageLoaded && (
