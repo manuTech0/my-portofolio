@@ -13,7 +13,7 @@ const Contact = lazy(() => import("./contentComponents/contact"))
 
 function App() {
   const [loadDiv, setLoadDiv] = useState(false)
-  const imageLoaded = useImagePreload(["/corner-ts.svg", "/corner-be.svg", "/my-avatar.png", "/web-todolistwebp", "/web-blog.webp"])
+  const imageLoaded = useImagePreload(["/corner-ts.svg", "/corner-be.svg", "/my-avatar.png", "/web-todolist.webp", "/web-blog.webp"])
   const divRef = useRef<HTMLDivElement | null>(null)
   const componentsRef: componentsRef = {
     homeRef: useRef<HTMLElement | null>(null),
