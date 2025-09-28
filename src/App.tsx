@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet-async"
 
 function App() {
   const [loadDiv, setLoadDiv] = useState(false)
-  const imageLoaded = useImagePreload(["/corner-ts.svg", "/corner-be.svg", "/my-avatar.png", "/web-todolist.png"])
+  const imageLoaded = useImagePreload(["/corner-ts.svg", "/corner-be.svg", "/my-avatar.png", "/web-todolistwebp", "/web-blog.webp"])
   const divRef = useRef<HTMLDivElement | null>(null)
   const componentsRef: componentsRef = {
     homeRef: useRef<HTMLElement | null>(null),
@@ -34,24 +34,22 @@ function App() {
   }, [])
 
   useEffect(() => {
-    // setTimeout(() => {
-      if(!divRef.current) {
-        console.log("div is null")
-        return
-      };
-      const div = divRef.current
-      const heightDiv = div.scrollHeight
-      document.body.style.height = heightDiv + 300 + "px"
-      const handleScroll = () => {
-        const scrollY = window.scrollY
-        div.scrollTop = scrollY
+    if(!divRef.current) {
+      console.log("div is null")
+      return
+    };
+    const div = divRef.current
+    const heightDiv = div.scrollHeight
+    document.body.style.height = heightDiv + 300 + "px"
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      div.scrollTop = scrollY
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      document.body.style.height = "auto"
       }
-      window.addEventListener("scroll", handleScroll)
-      return () => {
-        window.removeEventListener("scroll", handleScroll)
-        document.body.style.height = "auto"
-      }
-    // }, 200)
   }, [loadDiv, imageLoaded])
 
   return (
@@ -64,6 +62,8 @@ function App() {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="todo-list" />
         <link rel="manifest" href="/site.webmanifest" />
+        <meta name="descripton" content="Portofolio Maulana Nurfanoto, Backend Specialist and IT Consultant" />
+        <link rel="canonical" href="https://www.manu-tech.my.id/" />
       </Helmet>
       <div className="lg:px-10 md:px-10 bg-color-gradient fixed top-0 left-0 w-screen h-dvh">
         {!imageLoaded && (

@@ -37,7 +37,7 @@ export default function Projects(
 						initial={{ y: -100, opacity: 0 }}
 						{...(inViewCard1 && { animate: { y: 0, opacity: 1 } })}
 						transition={{ duration: 0.6, delay: 0.4 }}
-						src="/web-todolist.png"
+						src="/web-todolist.webp"
 						alt="todo list"
 						className="sm:h-full sm:w-auto w-full h-auto border-2 rounded-lg border-black shadow-lg"
 					/>
@@ -71,7 +71,7 @@ export default function Projects(
 						initial={{ y: -100, opacity: 0 }}
 						{...(inViewCard2 && { animate: { y: 0, opacity: 1 } })}
 						transition={{ duration: 0.6, delay: 0.4 }}
-						src="/web-blog.png"
+						src="/web-blog.webp"
 						alt="blog"
 						className="sm:h-full sm:w-auto w-full h-auto border-2 rounded-lg border-black shadow-lg"
 					/>
