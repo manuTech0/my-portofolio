@@ -62,6 +62,7 @@ function App() {
         <meta name="apple-mobile-web-app-title" content="todo-list" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="description" content="Portofolio Maulana Nurfanoto, Backend Specialist and IT Consultant" />
+        <meta name="keywords" content="Maulana Nurfanoto, Maulana Nurfanoto, Maulana Nurpanoto, web developer, React developer, Next.js developer"></meta>
         <link rel="canonical" href="https://www.manu-tech.my.id/" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
