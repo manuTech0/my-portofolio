@@ -42,9 +42,7 @@ function App() {
     document.body.style.height = heightDiv + 300 + "px"
     const handleScroll = () => {
       const scrollY = window.scrollY
-      window.requestAnimationFrame(() => {
-        div.scrollTop = scrollY
-      })
+      div.scrollTop = scrollY
     }
     window.addEventListener("scroll", handleScroll)
     return () => {
@@ -63,7 +61,7 @@ function App() {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="todo-list" />
         <link rel="manifest" href="/site.webmanifest" />
-        <meta name="descripton" content="Portofolio Maulana Nurfanoto, Backend Specialist and IT Consultant" />
+        <meta name="description" content="Portofolio Maulana Nurfanoto, Backend Specialist and IT Consultant" />
         <link rel="canonical" href="https://www.manu-tech.my.id/" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

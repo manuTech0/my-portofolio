@@ -9,7 +9,7 @@ type LiType = {
 function NavItem({ children, ...props }: LiType) {
     return (
         <li {...props} className="transform-gpu hover:scale-110 hover:border-yellow-400 active:scale-110 active:border-yellow-400 cursor-pointer border-white border-b-2">
-            <a>{children}</a>
+            {children}
         </li>
     )
 }
