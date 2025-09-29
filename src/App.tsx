@@ -13,7 +13,7 @@ const Contact = lazy(() => import("./contentComponents/contact"))
 
 function App() {
   const [loadDiv, setLoadDiv] = useState(false)
-  const imageLoaded = useImagePreload(["/corner-ts.svg", "/corner-be.svg", "/my-avatar.png", "/web-todolist.webp", "/web-blog.webp"])
+  const imageLoaded = useImagePreload(["/corner-ts.svg", "/corner-be.svg", "/my-avatar.avif", "/web-todolist.webp", "/web-blog.webp"])
   const divRef = useRef<HTMLDivElement | null>(null)
   const componentsRef: componentsRef = {
     homeRef: useRef<HTMLElement | null>(null),
@@ -23,12 +23,10 @@ function App() {
   }
 
   const scrollToComponents = (ref: React.RefObject<HTMLElement | null>) => {
-    if(ref.current) {
-      ref.current.scrollIntoView({ 
+      ref.current?.scrollIntoView({ 
         behavior: "smooth",
         block: "center"
       })
-    }
   }
   useEffect(() => {
     setLoadDiv(true)
@@ -44,7 +42,9 @@ function App() {
     document.body.style.height = heightDiv + 300 + "px"
     const handleScroll = () => {
       const scrollY = window.scrollY
-      div.scrollTop = scrollY
+      window.requestAnimationFrame(() => {
+        div.scrollTop = scrollY
+      })
     }
     window.addEventListener("scroll", handleScroll)
     return () => {
@@ -69,6 +69,9 @@ function App() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Golos+Text:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sriracha&display=swap" rel="stylesheet" />
         <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecg.woff2" as="font" type="font/woff2" crossOrigin=""/>
+        <link rel="preload" as="image" href="/my-avatar.avif" type="image/avif" />
+        <link rel="preload" as="image" href="/my-avatar.webp" type="image/webp" />
+        <link rel="preload" as="image" href="/my-avatar.png" type="image/png" />
       </Helmet>
       <div className="lg:px-10 md:px-10 bg-color-gradient fixed top-0 left-0 w-screen h-dvh">
         {!imageLoaded && (
