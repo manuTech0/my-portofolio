@@ -5,6 +5,7 @@ import { useMediaQuery } from "usehooks-ts"
 import { motion } from "framer-motion"
 import { useInView } from "react-cool-inview"
 import TypingText from "@/components/typingText"
+import AdaptiveImage from "@/components/adaptiveImage"
 
 export default function Projects(
 	props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
@@ -33,14 +34,13 @@ export default function Projects(
 						isSm ? "" : "keen-slider__slide"
 					}`}
 				>
-					<motion.img
+					<AdaptiveImage 
 						initial={{ y: -100, opacity: 0 }}
 						{...(inViewCard1 && { animate: { y: 0, opacity: 1 } })}
 						transition={{ duration: 0.6, delay: 0.4 }}
-						src="/web-todolist.webp"
-						alt="todo list project"
-                        loading="eager"
 						className="sm:h-full sm:w-auto w-full h-auto border-2 rounded-lg border-black shadow-lg"
+						alt="todo list project"
+						baseName="web-todolist"					
 					/>
 					<motion.div className="max-w-lg">
 						<h2 className="text-yellow-500 font-semibold text-xl mb-2">
@@ -68,14 +68,14 @@ export default function Projects(
 						isSm ? "" : "keen-slider__slide"
 					}`}
 				>
-					<motion.img
+					<AdaptiveImage 
+						className="sm:h-full sm:w-auto w-full h-auto border-2 rounded-lg border-black shadow-lg"
+						alt="blog app project"
+						baseName="web-blog"
 						initial={{ y: -100, opacity: 0 }}
 						{...(inViewCard2 && { animate: { y: 0, opacity: 1 } })}
 						transition={{ duration: 0.6, delay: 0.4 }}
-						src="/web-blog.webp"
-						alt="blog app project"
-                        loading="eager"
-						className="sm:h-full sm:w-auto w-full h-auto border-2 rounded-lg border-black shadow-lg"
+					
 					/>
 					<motion.div className="max-w-lg">
 						<h2 className="text-yellow-500 font-semibold text-xl mb-2">

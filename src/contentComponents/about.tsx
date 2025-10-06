@@ -1,3 +1,4 @@
+import AdaptiveImage from "@/components/adaptiveImage"
 import TypingText from "@/components/typingText"
 import { useInView } from "react-cool-inview"
 import Marquee from "react-fast-marquee"
@@ -12,19 +13,16 @@ export default function About(
             <div className="sm:flex items-center justify-center sm:px-20">
                 <div className="flex-1 flex justify-center">
                     <div className="relative">
-                        <picture>
-                            <source srcSet="/my-avatar.avif" type="image/avif"/>
-                            <source srcSet="/my-avatar.webp" type="image/webp"/>
-                            <img
-                                src="/my-avatar.png"
-                                alt="avatar from Maulana Nurfanoto"
-                                style={{
-                                    background:
-                                        "linear-gradient(to top, #eab308 2%, transparent 98%)",
-                                }}
-                                className="w-50 h-50 rounded-lg object-contain z-10 border-b-2 border-black"
-                            />
-                        </picture>
+                        <AdaptiveImage 
+                            className="w-50 h-50 rounded-lg object-contain z-10 border-b-2 border-black"
+                            alt="avatar from Maulana Nurfanoto"
+                            style={{
+                                background:
+                                    "linear-gradient(to top, #eab308 2%, transparent 98%)",
+                            }}
+                            baseName="my-avatar"
+                            priority={true}
+                        />
                     </div>
                 </div>
 
