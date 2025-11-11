@@ -2,7 +2,30 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
+@font-face {
+  font-family: "ChocolateClassicalSans";
+  font-style: normal;
+  src: url("/fonts/ChocolateClassicalSans.woff2");
+  font-display: "swap";
+}
+@font-face {
+  font-family: "GolosText";
+  font-style: normal;
+  src: url("/fonts/GolosText.woff2");
+  font-display: "swap";
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  src: url("/fonts/Poppins.woff2");
+  font-display: "swap";
+}
+@font-face {
+  font-family: "Sriracha";
+  font-style: normal;
+  src: url("/fonts/Sriracha.woff2");
+  font-display: "swap";
+}
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -111,7 +134,7 @@
     --color-sidebar-ring: var(--sidebar-ring);
 
     --font-poppins: "Poppins", sans-serif;
-    --font-chocolate:  "Chocolate Classical Sans", sans-serif;
+    --font-chocolate:  "ChocolateClassicalSans", sans-serif;
     --font-sriracha: "Sriracha", cursive;
 }
 

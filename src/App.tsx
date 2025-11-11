@@ -155,10 +155,27 @@ function App() {
         <meta name="description" content="Portofolio Maulana Nurfanoto, Backend Specialist and IT Consultant" />
         <meta name="keywords" content="Maulana Nurfanoto, Maulana Nurfanoto, Maulana Nurpanoto, web developer, React developer, Next.js developer"></meta>
         <link rel="canonical" href="https://www.manu-tech.my.id/" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Golos+Text:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sriracha&display=swap" rel="stylesheet" />
-
+        <link
+          rel="preload"
+          href="/fonts/ChocolateClassicalSans.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Poppins.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Sriracha.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <link 
           rel="preload" 
           as="image" 
@@ -249,6 +266,22 @@ function App() {
           imageSizes="(min-width: 1201px) 100vw"
           type="image/webp"
           media="(min-width: 1201px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/corner-ts.svg"
+          type="image/svg+xml"
+          fetchPriority="high"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/corner-be.svg"
+          type="image/svg+xml"
+          fetchPriority="high"
+          crossOrigin=""
         />
       </Helmet>
       <Toaster position="top-center"/>
