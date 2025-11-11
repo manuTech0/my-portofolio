@@ -82,8 +82,7 @@ function Element(props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement
         }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const handleSubmit = async (data: z.infer<typeof contactSchema>) => {
+    const handleSubmit = async () => {
         if (!executeRecaptcha) {
             console.error("reCAPTCHA not loaded")
             return
@@ -141,7 +140,7 @@ function Element(props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement
                         <span className="hidden md:inline-block">-</span>
                     </h2>
 
-                    <div className="flex justify-start ms-4 sm:ms-0 sm:ms-4 sm:justify-end md:items-center h-full">
+                    <div className="flex justify-start ms-4 0 sm:ms-4 sm:justify-end md:items-center h-full">
                         <ul className="text-left text-white md:text-right">
                             {/* Email */}
                             <li>
