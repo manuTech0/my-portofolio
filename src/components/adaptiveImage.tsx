@@ -38,7 +38,6 @@ const AdaptiveImage: React.FC<AdaptiveImageProps> = ({
     link.as = "image";
     link.href = preloadHref;
     link.type = "image/webp";
-    link.fetchPriority = priority ? "high" : "auto";
     document.head.appendChild(link);
 
     return () => {

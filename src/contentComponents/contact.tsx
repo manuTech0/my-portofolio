@@ -31,92 +31,96 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
                     <div className="flex justify-end md:items-center h-full ">
                         <ul className="text-left text-white md:text-right">
                             <ol className="flex flex-col mt-0">
-                                <motion.span 
+                                <motion.li 
                                     className="flex ietems-center justify-start md:justify-end lg:justify-end gap-2"
                                     initial={{ x: -50, opacity: 0 }}
                                     {...(inView && {
                                         animate: { x: 0, opacity: 100 },
                                     })}
                                     transition={{ duration: 0.6 }}
-                                >Email <Mail size={16} /> <span className="md:hidden">:</span></motion.span>
-                                <motion.span 
+                                >Email <Mail size={16} /> <span className="md:hidden">:</span></motion.li>
+                                <motion.li
                                     className="text-yellow-100"
                                     initial={{ x: -100, opacity: 0 }}
                                     {...(inView && {
                                         animate: { x: 0, opacity: 100 },
                                     })}
                                     transition={{ duration: 0.6, delay: 0.4, }}
+                                    aria-label="redirect to email"
                                 >
                                     <span className="underline sm:text-[0.8rem] hover:decoration-yellow-500 cursor-pointer">
-                                        <a target="_blank" href="mailto:maulananurfanoto10@gmail.com">maulananurfanoto10@gmail.com</a>    
+                                        <a target="_blank" href="mailto:maulananurfanoto10@gmail.com" aria-label="redirect to email" title="redirect to email">maulananurfanoto10@gmail.com</a>    
                                     </span> <span className="hidden md:inline-block">:</span>
-                                </motion.span>
+                                </motion.li>
                             </ol>
                             <ol className="flex flex-col mt-2">
-                                <motion.span
+                                <motion.li
                                     className="flex items-center justify-start md:justify-end lg:justify-end gap-2"
                                     initial={{ x: -50, opacity: 0 }}
                                     {...(inView && {
                                         animate: { x: 0, opacity: 100 },
                                     })}
                                     transition={{ duration: 0.6 }}
-                                >Whatsapp <PhoneCall size={16} /> <span className="md:hidden">:</span></motion.span>
-                                <motion.span
+                                >Whatsapp <PhoneCall size={16} /> <span className="md:hidden">:</span></motion.li>
+                                <motion.li
                                     className="text-yellow-100"
                                     initial={{ x: -100, opacity: 0 }}
                                     {...(inView && {
                                         animate: { x: 0, opacity: 100 },
                                     })}
                                     transition={{ duration: 0.6, delay: 0.4, }}
+                                    aria-label="redirect to whatsapp"
                                 >
                                     <span className="underline hover:decoration-yellow-500 cursor-pointer">
-                                        <a target="_blank" href="https://wa.me/6288222358226">+62 882-2235-8226</a>
+                                        <a target="_blank" href="https://wa.me/6288222358226" aria-label="redirect to whatsapp" title="redirect to whatsapp">+62 882-2235-8226</a>
                                     </span> <span className="hidden md:inline-block">:</span>
-                                </motion.span>
+                                </motion.li>
                             </ol>
                             <ol className="flex flex-col mt-2 ">
-                                <motion.span
+                                <motion.li
                                     className="flex items-center justify-start md:justify-end lg:justify-end gap-2"
                                     initial={{ x: -50, opacity: 0 }}
                                     {...(inView && {
                                         animate: { x: 0, opacity: 100 },
                                     })}
                                     transition={{ duration: 0.6 }}
-                                >Github <Github size={16} /> <span className="md:hidden">:</span></motion.span>
-                                <motion.span
+                                >Github <Github size={16} /> <span className="md:hidden">:</span></motion.li>
+                                <motion.li
                                     className="text-yellow-100"
                                     initial={{ x: -100, opacity: 0 }}
                                     {...(inView && {
                                         animate: { x: 0, opacity: 100 },
                                     })}
                                     transition={{ duration: 0.6, delay: 0.4, }}
+                                    aria-label="redirect to github"
                                 >
                                     <span className="underline hover:decoration-yellow-500 cursor-pointer">
-                                        <a target="_blank" href="https://github.com/manuTech0">manuTech0</a>    
+                                        <a target="_blank" href="https://github.com/manuTech0" aria-label="redirect to github" title="redirect to github">manuTech0</a>    
                                     </span> <span className="hidden md:inline-block">:</span>
-                                </motion.span>
+                                </motion.li>
                             </ol>
                             <ol className="flex flex-col mt-2">
-                                <motion.span
+                                <motion.li
                                     className="flex items-center justify-start md:justify-end lg:justify-end gap-2"
                                     initial={{ x: -50, opacity: 0 }}
                                     {...(inView && {
                                         animate: { x: 0, opacity: 100 },
                                     })}
                                     transition={{ duration: 0.6 }}
-                                >Linkedl <LinkedinIcon size={16} /> <span className="md:hidden">:</span></motion.span>
-                                <motion.span
+                                >Linkedl <LinkedinIcon size={16} /> <span className="md:hidden">:</span></motion.li>
+                                <motion.li
                                     className="text-yellow-100"
                                     initial={{ x: -100, opacity: 0 }}
                                     {...(inView && {
                                         animate: { x: 0, opacity: 100 },
                                     })}
                                     transition={{ duration: 0.6, delay: 0.4, }}
+                                    aria-label="redirect to linkedin"
                                 >
                                     <span className="underline hover:decoration-yellow-500 cursor-pointer">
-                                        <a target="_blank" w-full href="https://www.linkedin.com/in/maulana-nurfanoto-5256a0318">Maulana Nurfanoto</a>
+                                        <a target="_blank" w-full href="https://www.linkedin.com/in/maulana-nurfanoto-5256a0318" aria-label="redirect to linkedin" title="redirect to linkedin">Maulana Nurfanoto</a>
                                     </span> <span className="hidden md:inline-block">:</span>
-                                </motion.span>
+                                </motion.li>
                             </ol>
                         </ul>
                     </div>

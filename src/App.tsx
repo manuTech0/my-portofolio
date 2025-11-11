@@ -65,7 +65,7 @@ function App() {
     const targetY = rect.top + window.scrollY
     ref.current.scrollIntoView({ behavior: "smooth", block: "center" });
     window.scrollTo({
-      top: targetY, 
+      top: targetY - 50, 
       behavior: "smooth"
     })
   };
@@ -307,19 +307,23 @@ function App() {
                   ref={componentsRef.homeRef}
                   scrollToComponents={scrollToComponents}
                   componentsRef={componentsRef}
+                  aria-label="redirect to home section"
                 />
                 <About
                   className="snap-center"
                   ref={componentsRef.aboutRef}
+                  aria-label="redirect to about section"
                 />
                 <Projects
                   className="snap-center"
                   ref={componentsRef.projectsRef}
+                  aria-label="redirect to project section"
                 />
                 <Contact
                   className="snap-center"
                   ref={componentsRef.contactRef}
                   id="tes"
+                  aria-label="redirect to contact section"
                 />
               </Suspense>
             </div>
@@ -332,7 +336,7 @@ function App() {
             >
               <ul className="flex justify-around gap-4 mb-2 text-md items-center me-4 text-gray-700">
                 <li className="border-gray-700 border-b-2 hover:text-yellow-400 cursor-pointer transform-gpu hover:-translate-y-2">
-                  <a href="https://github.com/manuTech0" target="_blank">
+                  <a href="https://github.com/manuTech0" target="_blank" title="redirect to github" aria-label="redirect to github">
                     <GithubIcon />
                   </a>
                 </li>
@@ -340,6 +344,8 @@ function App() {
                   <a
                     href="mailto:maulananurfanoto10@gmail.com"
                     target="_blank"
+                    title="redirect to manu email"
+                    aria-label="redirect to manu email"
                   >
                     <Mail />
                   </a>
