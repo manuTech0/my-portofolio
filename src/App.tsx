@@ -13,6 +13,7 @@ import { GithubIcon, Loader, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import type { componentsRef } from "./lib/types";
+import { Toaster } from "./components/ui/sonner";
 
 const Home = lazy(() => import("./contentComponents/home"));
 const About = lazy(() => import("./contentComponents/about"));
@@ -250,7 +251,7 @@ function App() {
           media="(min-width: 1201px)"
         />
       </Helmet>
-
+      <Toaster position="top-center"/>
       <div className="lg:px-10 md:px-10 bg-color-gradient fixed top-0 left-0 w-screen min-h-dvh">
         {!readyToShow ? (
           <div className="h-dvh w-screen z-[200] bg-color-gradient absolute top-0 left-0 flex justify-center items-center flex-col">
