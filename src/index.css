@@ -1,18 +1,20 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
+
 @custom-variant dark (&:is(.dark *));
 @font-face {
   font-family: "ChocolateClassicalSans";
   font-style: normal;
-  src: url("/fonts/ChocolateClassicalSans.woff2");
   font-display: "swap";
+  src: url("/fonts/ChocolateClassicalSans.woff2");
 }
 @font-face {
   font-family: "GolosText";
   font-style: normal;
-  src: url("/fonts/GolosText.woff2");
   font-display: "swap";
+  src: url("/fonts/GolosText.woff2");
 }
 @font-face {
   font-family: "Poppins";
@@ -23,8 +25,8 @@
 @font-face {
   font-family: "Sriracha";
   font-style: normal;
-  src: url("/fonts/Sriracha.woff2");
   font-display: "swap";
+  src: url("/fonts/Sriracha.woff2");
 }
 :root {
   --radius: 0.625rem;

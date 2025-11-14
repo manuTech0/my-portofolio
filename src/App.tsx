@@ -153,7 +153,16 @@ function App() {
         <meta name="apple-mobile-web-app-title" content="todo-list" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="description" content="Portofolio Maulana Nurfanoto, Backend Specialist and IT Consultant" />
+        <meta property="og:title" content="Maulana N | Portofolio" />
+        <meta property="og:description" content="Portofolio Maulana Nurfanoto, Backend Specialist and IT Consultant" />
+        <meta property="og:image" content="https://www.manu-tech.my.id/my-avatar-600.webp" />
+        <meta property="og:url" content="https://www.manu-tech.my.id" />
+        <meta property="og:type" content="website" />
         <meta name="keywords" content="Maulana Nurfanoto, Maulana Nurfanoto, Maulana Nurpanoto, web developer, React developer, Next.js developer"></meta>
+        <meta property="twitter:title" content="Maulana N | Portofolio" />
+        <meta property="twitter:description" content="Portofolio Maulana Nurfanoto, Backend Specialist and IT Consultant" />
+        <meta property="twitter:image" content="https://www.manu-tech.my.id/my-avatar-600.webp" />
+        <meta property="twitter:card" content="https://www.manu-tech.my.id/my-avatar-1354.webp" />
         <link rel="canonical" href="https://www.manu-tech.my.id/" />
         <link
           rel="preload"
