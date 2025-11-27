@@ -24,7 +24,6 @@ export default defineConfig({
   },
   build: {
     target: "esnext",
-    polyfillModulePreload: false,
     rollupOptions: {
       treeshake: true
     },
@@ -34,6 +33,11 @@ export default defineConfig({
     sourcemap: false,
     minify: "terser",
     cssMinify: true,
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      },
+    },
     cssCodeSplit: true,
   },
 })

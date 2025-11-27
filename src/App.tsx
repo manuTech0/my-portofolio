@@ -6,42 +6,55 @@ import React, {
   useRef,
   useState,
   useTransition,
+  useMemo,
+  useCallback
 } from "react";
 import Navbar from "./Navbar";
-import { useImagePreload } from "./components/imgaePreload";
 import { GithubIcon, Loader, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import type { componentsRef } from "./lib/types";
 import { Toaster } from "./components/ui/sonner";
+
+// Lazy load components
 const Home = lazy(() => import("./contentComponents/home"));
 const About = lazy(() => import("./contentComponents/about"));
 const Projects = lazy(() => import("./contentComponents/project"));
 const Contact = lazy(() => import("./contentComponents/contact"));
+
+// Loading component untuk reuse
+const LoadingScreen = () => (
+  <div className="h-dvh w-screen z-[200] bg-color-gradient absolute top-0 left-0 flex justify-center items-center flex-col">
+    <div className="animate-bounce">
+      <h1 className="flex">
+        <Loader className="animate-spin me-2" />
+        <span className="typing-dots">Loading</span>
+      </h1>
+    </div>
+    <p>We're getting things ready. Please hold on.</p>
+  </div>
+);
+
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const imageLoaded = useImagePreload([
-    "my-avatar-360.webp",
-    "web-blog-360.webp",
-    "web-todolist-360.webp",
-    "my-avatar-600.webp",
-    "web-blog-600.webp",
-    "web-todolist-600.webp",
-    "my-avatar-1354.webp",
-    "web-blog-1354.webp",
-    "web-todolist-1354.webp",
-    "my-avatar-1440.webp",
-    "web-blog-1440.webp",
-    "web-todolist-1440.webp",
-  ]);
   const divRef = useRef<HTMLDivElement | null>(null);
-  const componentsRef: componentsRef = {
-    homeRef: useRef<HTMLElement | null>(null),
-    aboutRef: useRef<HTMLElement | null>(null),
-    projectsRef: useRef<HTMLElement | null>(null),
-    contactRef: useRef<HTMLElement | null>(null),
-  };
+  
+  // Refs harus di top level, bukan di dalam useMemo
+  const homeRef = useRef<HTMLElement | null>(null);
+  const aboutRef = useRef<HTMLElement | null>(null);
+  const projectsRef = useRef<HTMLElement | null>(null);
+  const contactRef = useRef<HTMLElement | null>(null);
+  
+  // Memoize object refs
+  const componentsRef: componentsRef = useMemo(() => ({
+    homeRef,
+    aboutRef,
+    projectsRef,
+    contactRef,
+  }), []);
+
+  // Preload components
   useEffect(() => {
     startTransition(() => {
       Promise.all([
@@ -52,79 +65,123 @@ function App() {
       ]).then(() => setIsLoaded(true));
     });
   }, []);
-  const readyToShow = isLoaded && imageLoaded && !isPending;
-  const scrollToComponents = (ref: React.RefObject<HTMLElement | null>) => {
+
+  const readyToShow = isLoaded && !isPending;
+
+  // Scroll to component - memoize dengan useCallback
+  const scrollToComponents = useCallback((ref: React.RefObject<HTMLElement | null>) => {
     if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect()
-    const targetY = rect.top + window.scrollY
-    ref.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    const targetY = ref.current.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({
-      top: targetY - 50, 
+      top: targetY - 50,
       behavior: "smooth"
-    })
-  };
+    });
+  }, []);
+
+  // Optimized scroll sync
   useLayoutEffect(() => {
     const div = divRef.current;
-    console.log(div)
     if (!div || !readyToShow) return;
+
+    let rafId: number | null = null;
+    let resizeTimer: number | null = null;
+
+    // Update body height
     const updateBodyHeight = () => {
-      document.body.style.height = div.scrollHeight + 300 + "px";
+      document.body.style.height = `${div.scrollHeight + 300}px`;
     };
+
+    // Sync scroll dengan RAF throttling
     const handleScroll = () => {
-      window.requestAnimationFrame(() => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
         div.scrollTop = window.scrollY;
+        rafId = null;
       });
     };
+
+    // Smooth scroll dengan easing
     const scrollToHash = (hash: string) => {
       const el = div.querySelector(hash) as HTMLElement | null;
       if (!el) return;
-      const targetY = el.offsetTop;
-      const duration = 400;
+
       const startY = div.scrollTop;
+      const targetY = el.offsetTop;
       const diff = targetY - startY;
-      let startTime: number | null = null;
-      const animate = (time: number) => {
-        if (!startTime) startTime = time;
-        const progress = Math.min((time - startTime) / duration, 1);
-        div.scrollTop = startY + diff * progress;
+      const startTime = performance.now();
+      const duration = 400;
+
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Ease in-out quad
+        const easeProgress = progress < 0.5 
+          ? 2 * progress * progress 
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+        
+        div.scrollTop = startY + diff * easeProgress;
+        
         if (progress < 1) requestAnimationFrame(animate);
       };
+
       requestAnimationFrame(animate);
     };
+
+    // Event delegation untuk anchor clicks
     const handleAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLAnchorElement;
-      if (target.tagName === "A" && target.hash) {
-        const el = div.querySelector(target.hash);
-        if (!el) return;
-        e.preventDefault();
-        scrollToHash(target.hash);
-        window.history.pushState(null, "", target.hash);
-      }
+      const anchor = (e.target as HTMLElement).closest('a[href^="#"]') as HTMLAnchorElement;
+      if (!anchor?.hash) return;
+      
+      const el = div.querySelector(anchor.hash);
+      if (!el) return;
+
+      e.preventDefault();
+      scrollToHash(anchor.hash);
+      history.pushState(null, '', anchor.hash);
     };
-    let resizeTimer: number | null = null;
-    const resizeObserver = new ResizeObserver(() => {
+
+    // Debounced resize handler
+    const handleResize = () => {
       if (resizeTimer) clearTimeout(resizeTimer);
       resizeTimer = window.setTimeout(() => {
         updateBodyHeight();
-        if (window.location.hash) scrollToHash(window.location.hash);
+        if (location.hash) scrollToHash(location.hash);
       }, 150);
-    });
+    };
+
+    // Setup observers
+    const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(div);
-    const observer = new MutationObserver(updateBodyHeight);
-    observer.observe(document.body, { childList: true, subtree: true });
+
+    const mutationObserver = new MutationObserver(updateBodyHeight);
+    mutationObserver.observe(document.body, { 
+      childList: true, 
+      subtree: true 
+    });
+
+    // Initial setup
     updateBodyHeight();
-    if (window.location.hash) scrollToHash(window.location.hash);
-    window.addEventListener("scroll", handleScroll);
-    document.addEventListener("click", handleAnchorClick);
+    if (location.hash) {
+      requestAnimationFrame(() => scrollToHash(location.hash));
+    }
+
+    // Event listeners dengan passive
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('click', handleAnchorClick);
+
+    // Cleanup
     return () => {
       resizeObserver.disconnect();
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("click", handleAnchorClick);
-      document.body.style.height = "auto";
+      mutationObserver.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleAnchorClick);
+      document.body.style.height = 'auto';
       if (resizeTimer) clearTimeout(resizeTimer);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [readyToShow]);
+
   return (
     <>
       <Helmet>
@@ -141,150 +198,32 @@ function App() {
         <meta property="og:image" content="https://www.manu-tech.my.id/my-avatar-600.webp" />
         <meta property="og:url" content="https://www.manu-tech.my.id" />
         <meta property="og:type" content="website" />
-        <meta name="keywords" content="Maulana Nurfanoto, Maulana Nurfanoto, Maulana Nurpanoto, web developer, React developer, Next.js developer"></meta>
+        <meta name="keywords" content="Maulana Nurfanoto, web developer, React developer, Next.js developer" />
         <meta property="twitter:title" content="Maulana N | Portofolio" />
         <meta property="twitter:description" content="Portofolio Maulana Nurfanoto, Backend Specialist and IT Consultant" />
         <meta property="twitter:image" content="https://www.manu-tech.my.id/my-avatar-600.webp" />
         <meta property="twitter:card" content="https://www.manu-tech.my.id/my-avatar-1354.webp" />
         <link rel="canonical" href="https://www.manu-tech.my.id/" />
-        <link
-          rel="preload"
-          href="/fonts/ChocolateClassicalSans.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Poppins.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Sriracha.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/my-avatar-360.webp"
-          imageSrcSet="/my-avatar-360.webp 360w, /my-avatar-600.webp 600w"
-          imageSizes="(max-width: 600px) 100vw"
-          type="image/webp"
-          media="(max-width: 600px)"
-        />
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/web-blog-360.webp"
-          imageSrcSet="/web-blog-360.webp 360w, /web-blog-600.webp 600w"
-          imageSizes="(max-width: 600px) 100vw"
-          type="image/webp"
-          media="(max-width: 600px)"
-        />
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/web-todolist-360.webp"
-          imageSrcSet="/web-todolist-360.webp 360w, /web-todolist-600.webp 600w"
-          imageSizes="(max-width: 600px) 100vw"
-          type="image/webp"
-          media="(max-width: 600px)"
-        />
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/my-avatar-1354.webp"
-          imageSrcSet="/my-avatar-600.webp 600w, /my-avatar-1354.webp 1354w"
-          imageSizes="(max-width: 1200px) 100vw"
-          type="image/webp"
-          media="(min-width: 601px) and (max-width: 1200px)"
-        />
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/web-blog-1354.webp"
-          imageSrcSet="/web-blog-600.webp 600w, /web-blog-1354.webp 1354w"
-          imageSizes="(max-width: 1200px) 100vw"
-          type="image/webp"
-          media="(min-width: 601px) and (max-width: 1200px)"
-        />
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/web-todolist-1354.webp"
-          imageSrcSet="/web-todolist-600.webp 600w, /web-todolist-1354.webp 1354w"
-          imageSizes="(max-width: 1200px) 100vw"
-          type="image/webp"
-          media="(min-width: 601px) and (max-width: 1200px)"
-        />
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/my-avatar-1440.webp"
-          imageSrcSet="/my-avatar-1354.webp 1354w, /my-avatar-1440.webp 1440w"
-          imageSizes="(min-width: 1201px) 100vw"
-          type="image/webp"
-          media="(min-width: 1201px)"
-        />
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/web-blog-1440.webp"
-          imageSrcSet="/web-blog-1354.webp 1354w, /web-blog-1440.webp 1440w"
-          imageSizes="(min-width: 1201px) 100vw"
-          type="image/webp"
-          media="(min-width: 1201px)"
-        />
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/web-todolist-1440.webp"
-          imageSrcSet="/web-todolist-1354.webp 1354w, /web-todolist-1440.webp 1440w"
-          imageSizes="(min-width: 1201px) 100vw"
-          type="image/webp"
-          media="(min-width: 1201px)"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/corner-ts.svg"
-          type="image/svg+xml"
-          fetchPriority="high"
-          crossOrigin=""
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/corner-be.svg"
-          type="image/svg+xml"
-          fetchPriority="high"
-          crossOrigin=""
-        />
+        
+        {/* Font preloads */}
+        <link rel="preload" href="/fonts/ChocolateClassicalSans.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/Poppins.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/Sriracha.woff2" as="font" type="font/woff2" crossOrigin="" />
+        
+        {/* Critical images preload */}
+        <link rel="preload" as="image" href="/corner-ts.svg" type="image/svg+xml" fetchPriority="high" />
+        <link rel="preload" as="image" href="/corner-be.svg" type="image/svg+xml" fetchPriority="high" />
       </Helmet>
-      <Toaster position="top-center"/>
+
+      <Toaster position="top-center" />
+
       <div className="lg:px-10 md:px-10 bg-color-gradient fixed top-0 left-0 w-screen min-h-dvh">
         {!readyToShow ? (
-          <div className="h-dvh w-screen z-[200] bg-color-gradient absolute top-0 left-0 flex justify-center items-center flex-col">
-            <div className="animate-bounce">
-              <h1 className="flex">
-                <Loader className="animate-spin me-2" />
-                <span className="typing-dots">Loading</span>
-              </h1>
-            </div>
-            <p>We're getting things ready. Please hold on.</p>
-          </div>
+          <LoadingScreen />
         ) : (
           <motion.div
             className="h-dvh w-full px-10 pb-7 pt-5 flex flex-col"
-            style={{
-              backgroundImage: `url("/corner-ts.svg")`,
-              backgroundRepeat: "no-repeat",
-            }}
+            style={{ backgroundImage: `url("/corner-ts.svg")`, backgroundRepeat: "no-repeat" }}
           >
             <div
               className="absolute sm:ms-10 lg:mx-10 md:mx-10 bottom-0 right-0 h-screen w-full flex justify-start items-end"
@@ -294,28 +233,18 @@ function App() {
                 backgroundRepeat: "no-repeat",
               }}
             />
+
             <Navbar
               componentsRef={componentsRef}
               scrollToComponents={scrollToComponents}
             />
+
             <div
               ref={divRef}
               className="h-max flex-1 overflow-hidden text-white z-50"
               id="page"
             >
-              <Suspense
-                fallback={
-                  <div className="h-dvh w-screen z-[200] bg-color-gradient absolute top-0 left-0 flex justify-center items-center flex-col">
-                    <div className="animate-bounce">
-                      <h1 className="flex">
-                        <Loader className="animate-spin me-2" />
-                        <span className="typing-dots">Loading</span>
-                      </h1>
-                    </div>
-                    <p>We're getting things ready. Please hold on.</p>
-                  </div>
-                }
-              >
+              <Suspense fallback={<LoadingScreen />}>
                 <Home
                   className="snap-center"
                   ref={componentsRef.homeRef}
@@ -341,6 +270,7 @@ function App() {
                 />
               </Suspense>
             </div>
+
             <motion.div
               className="flex justify-start items-end"
               initial={{ y: 50, opacity: 0 }}
@@ -354,12 +284,7 @@ function App() {
                   </a>
                 </li>
                 <li className="border-gray-700 border-b-2 hover:text-yellow-400 cursor-pointer transform-gpu hover:-translate-y-2">
-                  <a
-                    href="mailto:maulananurfanoto10@gmail.com"
-                    target="_blank"
-                    title="redirect to manu email"
-                    aria-label="redirect to manu email"
-                  >
+                  <a href="mailto:maulananurfanoto10@gmail.com" target="_blank" title="redirect to manu email" aria-label="redirect to manu email">
                     <Mail />
                   </a>
                 </li>
@@ -371,4 +296,5 @@ function App() {
     </>
   );
 }
+
 export default App;
