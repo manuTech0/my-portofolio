@@ -14,14 +14,7 @@ const config = {
 			return isExternalLibrary ? undefined : true;
 		}
 	},
-	kit: {
-		adapter: adapter({
-			routes: {
-				include: ['/*'],
-				exclude: ['<all>']
-			}
-		})
-	},
+	kit: { adapter: adapter() },
 	preprocess: [mdsvex({ extensions: ['.svx', '.md'] })],
 	extensions: ['.svelte', '.svx', '.md']
 };
