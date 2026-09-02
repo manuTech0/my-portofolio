@@ -1,0 +1,454 @@
+@import 'tailwindcss';
+@import "tw-animate-css";
+@import "shadcn-svelte/tailwind.css";
+@import "@fontsource-variable/jetbrains-mono";
+
+@custom-variant dark (&:is(.dark *));
+@plugin '@tailwindcss/typography';
+
+:root {
+	--background: oklch(1 0 0);
+	--foreground: oklch(0.145 0 0);
+	--card: oklch(1 0 0);
+	--card-foreground: oklch(0.145 0 0);
+	--popover: oklch(1 0 0);
+	--popover-foreground: oklch(0.145 0 0);
+	--primary: oklch(0.205 0 0);
+	--primary-foreground: oklch(0.985 0 0);
+	--secondary: oklch(0.97 0 0);
+	--secondary-foreground: oklch(0.205 0 0);
+	--muted: oklch(0.97 0 0);
+	--muted-foreground: oklch(0.556 0 0);
+	--accent: oklch(0.97 0 0);
+	--accent-foreground: oklch(0.205 0 0);
+	--destructive: oklch(0.577 0.245 27.325);
+	--border: oklch(0.922 0 0);
+	--input: oklch(0.922 0 0);
+	--ring: oklch(0.708 0 0);
+	--chart-1: oklch(0.87 0 0);
+	--chart-2: oklch(0.556 0 0);
+	--chart-3: oklch(0.439 0 0);
+	--chart-4: oklch(0.371 0 0);
+	--chart-5: oklch(0.269 0 0);
+	--radius: 0.625rem;
+	--sidebar: oklch(0.985 0 0);
+	--sidebar-foreground: oklch(0.145 0 0);
+	--sidebar-primary: oklch(0.205 0 0);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.97 0 0);
+	--sidebar-accent-foreground: oklch(0.205 0 0);
+	--sidebar-border: oklch(0.922 0 0);
+	--sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+	--background: oklch(0.145 0 0);
+	--foreground: oklch(0.985 0 0);
+	--card: oklch(0.205 0 0);
+	--card-foreground: oklch(0.985 0 0);
+	--popover: oklch(0.205 0 0);
+	--popover-foreground: oklch(0.985 0 0);
+	--primary: oklch(0.922 0 0);
+	--primary-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.269 0 0);
+	--secondary-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.269 0 0);
+	--muted-foreground: oklch(0.708 0 0);
+	--accent: oklch(0.269 0 0);
+	--accent-foreground: oklch(0.985 0 0);
+	--destructive: oklch(0.704 0.191 22.216);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 15%);
+	--ring: oklch(0.556 0 0);
+	--chart-1: oklch(0.87 0 0);
+	--chart-2: oklch(0.556 0 0);
+	--chart-3: oklch(0.439 0 0);
+	--chart-4: oklch(0.371 0 0);
+	--chart-5: oklch(0.269 0 0);
+	--sidebar: oklch(0.205 0 0);
+	--sidebar-foreground: oklch(0.985 0 0);
+	--sidebar-primary: oklch(0.488 0.243 264.376);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.269 0 0);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: oklch(0.556 0 0);
+}
+
+@theme inline {
+	--font-mono: 'JetBrains Mono Variable', monospace;
+	--color-sidebar-ring: var(--sidebar-ring);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar: var(--sidebar);
+	--color-chart-5: var(--chart-5);
+	--color-chart-4: var(--chart-4);
+	--color-chart-3: var(--chart-3);
+	--color-chart-2: var(--chart-2);
+	--color-chart-1: var(--chart-1);
+	--color-ring: var(--ring);
+	--color-input: var(--input);
+	--color-border: var(--border);
+	--color-destructive: var(--destructive);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-accent: var(--accent);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-muted: var(--muted);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-secondary: var(--secondary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-primary: var(--primary);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-popover: var(--popover);
+	--color-card-foreground: var(--card-foreground);
+	--color-card: var(--card);
+	--color-foreground: var(--foreground);
+	--color-background: var(--background);
+	--radius-sm: calc(var(--radius) * 0.6);
+	--radius-md: calc(var(--radius) * 0.8);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) * 1.4);
+	--radius-2xl: calc(var(--radius) * 1.8);
+	--radius-3xl: calc(var(--radius) * 2.2);
+	--radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+	}
+
+	html {
+		@apply font-mono;
+	}
+}
+
+/*
+ * .term — kit class untuk styling HTML hasil markdown-it jadi tampilan
+ * terminal/TUI (mono, hijau-di-atas-hitam, box-drawing ala pane TUI).
+ *
+ * Pemakaian:
+ *   <div class="term">{@html mdRendered}</div>
+ *
+ * Semua selector di bawah adalah descendant selector generik dari elemen
+ * yang dihasilkan markdown-it default (headers, p, list, code, table, dst),
+ * jadi tidak perlu utak-atik markdown-it sama sekali.
+ *
+ * CATATAN SVELTE: kalau file ini di-import sebagai <style> di dalam
+ * komponen Svelte (bukan CSS global terpisah), bungkus tiap selector
+ * dengan :global(...) — Svelte men-scope class secara default dan HTML
+ * dari {@html ...} tidak kebagian atribut scope tsb. Kalau di-import
+ * lewat app.css / +layout.svelte global stylesheet, tidak perlu :global.
+ */
+
+.term {
+	--term-bg: #000000;
+	--term-fg: #33ff66;
+	--term-fg-dim: #1f9944;
+	--term-accent: #7fffd4;
+	--term-accent-2: #ffd166;
+	--term-danger: #ff5f57;
+	--term-border: #1f9944;
+	--term-selection-bg: #33ff66;
+	--term-selection-fg: #000000;
+
+	background: var(--term-bg);
+	color: var(--term-fg);
+	font-family: "Cascadia Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas,
+		"Courier New", monospace;
+	font-size: 13px;
+	line-height: 1.6;
+	padding: 12px 14px;
+	white-space: normal;
+	word-break: break-word;
+}
+
+.term ::selection {
+	background: var(--term-selection-bg);
+	color: var(--term-selection-fg);
+}
+
+/* Scrollbar (WebKit/Blink) — thin, TUI-style */
+.term::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+.term::-webkit-scrollbar-track {
+	background: var(--term-bg);
+}
+
+.term::-webkit-scrollbar-thumb {
+	background: var(--term-fg-dim);
+	border: 2px solid var(--term-bg);
+}
+
+.term {
+	scrollbar-width: thin;
+	scrollbar-color: var(--term-fg-dim) var(--term-bg);
+}
+
+/* ---------- Headings: prefixed like a shell prompt / md source ---------- */
+.term h1,
+.term h2,
+.term h3,
+.term h4,
+.term h5,
+.term h6 {
+	font-weight: 700;
+	/* margin: 1.1em 0 0.5em; */
+	line-height: 1.35;
+}
+
+.term h1:first-child,
+.term h2:first-child,
+.term h3:first-child {
+	margin-top: 0;
+}
+
+.term h1 {
+	font-size: 1.15em;
+	color: var(--term-accent);
+}
+
+.term h1::before {
+	color: var(--term-fg-dim);
+}
+
+.term h2 {
+	font-size: 1.05em;
+	color: var(--term-accent);
+}
+
+.term h2::before {
+	color: var(--term-fg-dim);
+}
+
+.term h3 {
+	font-size: 1em;
+	color: var(--term-fg);
+}
+
+.term h3::before {
+	color: var(--term-fg-dim);
+}
+
+.term h4,
+.term h5,
+.term h6 {
+	font-size: 1em;
+	color: var(--term-fg-dim);
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+/* ---------- Body text ---------- */
+.term p {
+	margin: 0.6em 0;
+}
+
+.term strong {
+	color: #ffffff;
+	font-weight: 700;
+}
+
+.term em {
+	color: var(--term-accent);
+	font-style: italic;
+}
+
+.term del {
+	color: var(--term-fg-dim);
+	text-decoration: line-through;
+}
+
+.term mark {
+	background: var(--term-accent-2);
+	color: #000000;
+	padding: 0 2px;
+}
+
+/* ---------- Links: underline, invert on hover like a selected item ---------- */
+.term a {
+	color: var(--term-accent);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.term a:hover,
+.term a:focus-visible {
+	background: var(--term-accent);
+	color: #000000;
+	outline: none;
+	text-decoration: none;
+}
+
+/* ---------- Lists ---------- */
+.term ul,
+.term ol {
+	margin: 0.6em 0;
+	padding-left: 1.4em;
+}
+
+.term li {
+	margin: 0.2em 0;
+}
+
+.term ul {
+	list-style: none;
+	padding-left: 1.1em;
+}
+
+.term ul>li::before {
+	content: "› ";
+	color: var(--term-fg-dim);
+	margin-left: -1.1em;
+	padding-right: 0.3em;
+}
+
+.term ol {
+	list-style: none;
+	counter-reset: term-ol;
+}
+
+.term ol>li {
+	counter-increment: term-ol;
+}
+
+.term ol>li::before {
+	content: counter(term-ol) ". ";
+	color: var(--term-fg-dim);
+	margin-left: -1.4em;
+	padding-right: 0.2em;
+}
+
+/* Task lists (markdown-it-task-lists plugin) */
+.term li input[type="checkbox"] {
+	appearance: none;
+	width: 0.9em;
+	height: 0.9em;
+	border: 1px solid var(--term-fg-dim);
+	margin-right: 0.4em;
+	vertical-align: -1px;
+	position: relative;
+}
+
+.term li input[type="checkbox"]:checked::after {
+	content: "x";
+	position: absolute;
+	inset: -3px 0 0 1px;
+	color: var(--term-fg);
+	font-size: 0.85em;
+}
+
+/* ---------- Inline code ---------- */
+.term code {
+	font-family: inherit;
+	background: #0d1a10;
+	color: var(--term-accent-2);
+	border: 1px solid var(--term-border);
+	padding: 0 4px;
+	border-radius: 2px;
+}
+
+/* ---------- Code blocks: framed like a TUI panel ---------- */
+.term pre {
+	position: relative;
+	margin: 0.9em 0;
+	padding: 1.6em 0.9em 0.9em;
+	background: #0a120b;
+	border: 1px solid var(--term-border);
+	overflow-x: auto;
+}
+
+.term pre::before {
+	position: absolute;
+	top: 0;
+	left: 0.6em;
+	transform: translateY(-50%);
+	background: var(--term-bg);
+	color: var(--term-fg-dim);
+	font-size: 11px;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.term pre code {
+	background: transparent;
+	border: none;
+	padding: 0;
+	color: var(--term-fg);
+	white-space: pre;
+}
+
+/* ---------- Blockquote: side rail like a TUI callout ---------- */
+.term blockquote {
+	margin: 0.9em 0;
+	padding: 0.3em 0 0.3em 0.9em;
+	border-left: 2px solid var(--term-accent);
+	color: var(--term-fg-dim);
+	font-style: italic;
+}
+
+.term blockquote p {
+	margin: 0.3em 0;
+}
+
+/* ---------- Horizontal rule: ASCII-style divider ---------- */
+.term hr {
+	border: none;
+	border-top: 1px dashed var(--term-border);
+	margin: 1.2em 0;
+}
+
+/* ---------- Tables: box-drawing borders ---------- */
+.term table {
+	border-collapse: collapse;
+	margin: 0.9em 0;
+	width: 100%;
+	font-size: 12.5px;
+}
+
+.term th,
+.term td {
+	border: 1px solid var(--term-border);
+	padding: 4px 8px;
+	text-align: left;
+}
+
+.term thead th {
+	background: var(--term-fg-dim);
+	color: #000000;
+	font-weight: 700;
+}
+
+.term tbody tr:nth-child(even) {
+	background: #0a120b;
+}
+
+/* ---------- Images ---------- */
+.term img {
+	max-width: 100%;
+	border: 1px solid var(--term-border);
+	filter: saturate(0.9) contrast(1.05);
+}
+
+/* ---------- Keyboard hints ---------- */
+.term kbd {
+	font-family: inherit;
+	background: #0d1a10;
+	color: var(--term-fg);
+	border: 1px solid var(--term-border);
+	border-bottom-width: 2px;
+	padding: 0 5px;
+	border-radius: 2px;
+	font-size: 0.9em;
+}
