@@ -1,42 +1,77 @@
-# sv
+# manu-portofolio
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Personal portfolio website for **Maulana Nurfanoto (Manu)** — a junior backend developer focused on authentication, authorization, and identity access management.
 
-## Creating a project
+The site is built as an interactive terminal/SSH simulator inside a Windows XP-inspired desktop environment. Visitors can explore the portfolio by typing commands or clicking through the desktop UI.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Tech Stack
 
-```sh
-# create a new project
-npx sv create my-app
-```
+- **Framework** — SvelteKit
+- **Styling** — Tailwind CSS v4
+- **UI Components** — shadcn-svelte, bits-ui
+- **Markdown** — mdsvex
+- **i18n** — Paraglide (English, Indonesian)
+- **Icons** — Phosphor Svelte
+- **Runtime** — Bun
 
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-bun x sv@0.13.0 create --template minimal --types ts --add tailwindcss="plugins:typography" mdsvex paraglide="languageTags:en, id+demo:no" --install bun manu-portofolio
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Getting Started
 
 ```sh
-npm run dev
+# install dependencies
+bun install
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# start dev server
+bun run dev
 ```
 
 ## Building
 
-To create a production version of your app:
-
 ```sh
-npm run build
+bun run build
 ```
 
-You can preview the production build with `npm run preview`.
+Preview the production build with `bun run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Project Structure
+
+```
+src/
+├── lib/
+│   ├── components/
+│   │   ├── app/          # Terminal (ssh.svelte) & Desktop (desktop.svelte)
+│   │   └── ui/           # shadcn-svelte primitives
+│   ├── term/
+│   │   ├── commands/     # about, projects, skills, experience, education, contact ...
+│   │   ├── project-data.ts
+│   │   ├── exec.ts
+│   │   └── fs.ts         # virtual filesystem for ls, cd, cat, tree
+│   └── paraglide/        # auto-generated i18n
+├── routes/
+│   └── +page.svelte      # entry point
+└── app.html
+```
+
+## Available Terminal Commands
+
+| Command      | Description              |
+| ------------ | ------------------------ |
+| `about`      | About me                 |
+| `projects`   | View projects            |
+| `skills`     | Technical skills         |
+| `experience` | Work experience          |
+| `education`  | Education                |
+| `contact`    | Contact information      |
+| `ls`         | List directory contents  |
+| `cd`         | Change directory         |
+| `cat`        | Read a file              |
+| `pwd`        | Print working directory  |
+| `tree`       | Show filesystem tree     |
+| `clear`      | Clear terminal           |
+| `help`       | Show available commands  |
+| `logout`     | End session              |
+
+## Contact
+
+- **Email** — [maulananurfanoto10@gmail.com](mailto:maulananurfanoto10@gmail.com)
+- **GitHub** — [github.com/manuTech0](https://github.com/manuTech0)
+- **WhatsApp** — [+62 8511-1323-432](https://wa.me/6285111323432)

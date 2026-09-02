@@ -17,6 +17,7 @@
   import Avatar from "../ui/avatar/avatar.svelte";
   import AvatarImage from "../ui/avatar/avatar-image.svelte";
   import AvatarFallback from "../ui/avatar/avatar-fallback.svelte";
+  import * as m from "$lib/paraglide/messages";
 
   // children receives (1) the active portfolio section id and (2) a
   // navigate function that switches section + opens/restores the window —
@@ -27,19 +28,19 @@
 
   // ---- Portfolio menubar sections ----
   const sections = [
-    { id: "terminal", label: "Terminal", title: "Terminal" },
-    { id: "about", label: "Tentang", title: "Tentang Saya" },
-    { id: "projects", label: "Proyek", title: "Proyek" },
-    { id: "skills", label: "Skill", title: "Skill" },
-    { id: "contact", label: "Kontak", title: "Kontak" },
+    { id: "terminal", get label() { return m["desktop.menu_terminal"](); }, get title() { return m["desktop.title_terminal"](); } },
+    { id: "about", get label() { return m["desktop.menu_about"](); }, get title() { return m["desktop.title_about"](); } },
+    { id: "projects", get label() { return m["desktop.menu_projects"](); }, get title() { return m["desktop.title_projects"](); } },
+    { id: "skills", get label() { return m["desktop.menu_skills"](); }, get title() { return m["desktop.title_skills"](); } },
+    { id: "contact", get label() { return m["desktop.menu_contact"](); }, get title() { return m["desktop.title_contact"](); } },
   ] as const;
 
   let activeSection = $state<string>("terminal");
   const activeTitle = $derived(
-    sections.find((s) => s.id === activeSection)?.title ?? "Terminal",
+    sections.find((s) => s.id === activeSection)?.title ?? m["desktop.title_terminal"](),
   );
 
-  // ---- Profile dropdown data (ganti dengan data asli kamu) ----
+  // ---- Profile dropdown data ----
   const skillsBreadcrumb = [
     "Automation",
     "Authentication",
@@ -237,7 +238,7 @@
               <AvatarFallback>MN</AvatarFallback>
             </Avatar>
             <span class="text-[12px] font-semibold"
-              >Maulana Nurfanoto Portofolio</span
+              >{m["desktop.profile_name"]()}</span
             >
             <CaretDownIcon size={10} weight="bold" class="text-white/70" />
           </button>
@@ -253,7 +254,7 @@
         <DropdownMenu.Label
           class="bg-[#2b1b6b] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white"
         >
-          Kontak
+          {m["desktop.contact_label"]()}
         </DropdownMenu.Label>
 
         <div class="flex flex-col py-1">
@@ -321,7 +322,7 @@
         <DropdownMenu.Label
           class="bg-[#2b1b6b] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white"
         >
-          Skill
+          {m["desktop.skill_label"]()}
         </DropdownMenu.Label>
 
         <nav
@@ -418,7 +419,7 @@
           {@render children(activeSection, openSection)}
         {:else}
           <p class="p-3 font-mono text-[13px] text-[#33ff66]">
-            Konten untuk "{activeTitle}" belum diisi.
+            {m["desktop.window_empty"]({ title: activeTitle })}
           </p>
         {/if}
       </CardContent>

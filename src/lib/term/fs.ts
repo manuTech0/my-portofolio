@@ -1,9 +1,4 @@
-import about from "./commands/about";
-import contact from "./commands/contact";
-import education from "./commands/education";
-import experience from "./commands/experience";
-import help from "./commands/help";
-import skills from "./commands/skills";
+import * as m from "$lib/paraglide/messages";
 import { projects, type Project } from "./project-data";
 
 export type FSNode =
@@ -33,13 +28,13 @@ function buildRoot(): FSNode {
     kind: "dir",
     name: "~",
     children: [
-      { kind: "file", name: "about.md", content: about.content.body },
+      { kind: "file", name: "about.md", content: m["about.body"]() },
       { kind: "dir", name: "projects", children: projects.map(projectDir) },
-      { kind: "file", name: "skills.md", content: skills.content.body },
-      { kind: "file", name: "experience.md", content: experience.content.body },
-      { kind: "file", name: "education.md", content: education.content.body },
-      { kind: "file", name: "contact.md", content: contact.content.body },
-      { kind: "file", name: "help.md", content: help.content.body },
+      { kind: "file", name: "skills.md", content: m["skills.body"]() },
+      { kind: "file", name: "experience.md", content: m["experience.body"]() },
+      { kind: "file", name: "education.md", content: m["education.body"]() },
+      { kind: "file", name: "contact.md", content: m["contact.body"]() },
+      { kind: "file", name: "help.md", content: m["help.body"]() },
     ],
   };
 }

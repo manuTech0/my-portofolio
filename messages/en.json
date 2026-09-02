@@ -1,4 +1,68 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from en!"
+	"about": {
+		"title": "About Me",
+		"body": "I'm Manu, a junior backend developer focused on authentication and authorization.\n\nMost of my work revolves around building backend systems that handle users, identities, sessions, permissions, and access control. I'm particularly interested in the parts of an application that need to be reliable and predictable before anything else can work properly.\n\nMy primary language is TypeScript, while I also work with Go, Laravel/PHP, and Rust. I enjoy building backend services, APIs, and infrastructure-oriented projects, especially when I can understand how the system works underneath instead of relying entirely on abstractions."
+	},
+	"projects": {
+		"title": "Projects",
+		"tree_title": "projects/"
+	},
+	"skills": {
+		"title": "Skills",
+		"body": "### Programming Languages\n\n* **TypeScript — 60%**\n* **Go — 25%**\n* **Laravel / PHP — 10%**\n* **Rust — 5%**\n\n### Backend & Security\n\n* Authentication\n* Authorization\n* RBAC (Role-Based Access Control)\n* OIDC\n* Session management\n* API key management\n* User management\n* Access control\n* Backend API development\n\n### Focus\n\nMy main area is **identity and access management** — making sure users are authenticated correctly, permissions are enforced, and backend resources are only accessible to the right actors."
+	},
+	"experience": {
+		"title": "Experience",
+		"body": "### AI Engineering Testing\n\n**allInclusiveVilla.net — 2 months**\n\nWorked on testing AI-related functionality and web applications, focusing on finding issues across different user flows and verifying whether the system behaved as expected.\n\n### Administration Intern\n\n**BKAD Majalengka — 4 months**\n\nCompleted a four-month internship as an administrative staff member, working with administrative processes, data, and day-to-day office operations."
+	},
+	"education": {
+		"title": "Education",
+		"body": "### SMKN 1 Maja\n\n**Software Engineering (Rekayasa Perangkat Lunak)**"
+	},
+	"contact": {
+		"title": "Contact",
+		"body": "Interested in working together, discussing a backend project, or talking about authentication and authorization?\n\n**Get in touch with me through my portfolio or GitHub.**\n\n* **Email** — [maulananurfanoto10@gmail.com](mailto:maulananurfanoto10@gmail.com)\n* **GitHub** — [github.com/manuTech0](https://github.com/manuTech0)\n* **WhatsApp** — [+62 8511-1323-432](https://wa.me/6285111323432)"
+	},
+	"help": {
+		"title": "Help",
+		"body": "---\n\nAvailable commands:\n\n- `about` — About me\n- `projects` — View projects\n- `skills` — Technical skills\n- `experience` — Work experience\n- `education` — Education\n- `contact` — Contact\n- `ls` — List directory contents\n- `cd` — Change directory\n- `cat` — Read a file\n- `pwd` — Print working directory\n- `tree` — Show filesystem tree\n- `clear` — Clear terminal\n- `help` — Show this help\n- `logout` — End this session"
+	},
+	"desktop": {
+		"menu_about": "About",
+		"menu_projects": "Projects",
+		"menu_skills": "Skills",
+		"menu_experience": "Experience",
+		"menu_education": "Education",
+		"menu_contact": "Contact",
+		"menu_clear": "Clear",
+		"menu_help": "Help",
+		"menu_logout": "Logout",
+		"menu_terminal": "Terminal",
+		"title_about": "About Me",
+		"title_projects": "Projects",
+		"title_skills": "Skills",
+		"title_contact": "Contact",
+		"title_terminal": "Terminal",
+		"contact_label": "Contact",
+		"skill_label": "Skill",
+		"profile_name": "Maulana Nurfanoto Portofolio",
+		"window_empty": "Content for \"{title}\" is not yet filled in."
+	},
+	"ssh": {
+		"menu_about": "About",
+		"menu_projects": "Projects",
+		"menu_skills": "Skills",
+		"menu_experience": "Experience",
+		"menu_education": "Education",
+		"menu_contact": "Contact",
+		"menu_clear": "Clear",
+		"menu_help": "Help",
+		"menu_logout": "Logout",
+		"connecting": "Connecting to portfolio server...",
+		"welcome": "Welcome to portfolio server.",
+		"connection_closed": "Connection to portfolio closed.",
+		"login_as": "login as",
+		"last_login": "Last login: {time}"
+	}
 }

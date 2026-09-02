@@ -1,5 +1,6 @@
 import type { Term } from "../types";
 import { defaultHelpCommand, defineCommand } from "../utils";
+import * as m from "$lib/paraglide/messages";
 
 export default defineCommand({
   command: "contact",
@@ -32,6 +33,6 @@ export default defineCommand({
     if (args.get("--help")) {
       return defaultHelpCommand(md, this);
     }
-    return md.render(this.content.body);
+    return md.render(m["contact.body"]());
   },
 });

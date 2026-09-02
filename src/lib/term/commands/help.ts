@@ -1,5 +1,6 @@
 import type { Term } from "../types";
 import { defineCommand } from "../utils";
+import * as m from "$lib/paraglide/messages";
 
 export default defineCommand({
   command: "help",
@@ -33,6 +34,6 @@ Available commands:
   },
   args: {},
   async exec(_args, md) {
-    return md.render(this.content.body);
+    return md.render(m["help.body"]());
   },
 });

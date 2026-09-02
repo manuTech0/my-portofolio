@@ -1,4 +1,68 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from id!"
+	"about": {
+		"title": "Tentang Saya",
+		"body": "Saya Manu, seorang junior backend developer yang fokus pada autentikasi dan otorisasi.\n\nKebanyakan pekerjaan saya berkaitan dengan membangun sistem backend yang menangani pengguna, identitas, sesi, izin, dan kontrol akses. Saya sangat tertarik dengan bagian aplikasi yang harus andal dan dapat diprediksi sebelum hal lain dapat berfungsi dengan baik.\n\nBahasa utama saya adalah TypeScript, sementara saya juga bekerja dengan Go, Laravel/PHP, dan Rust. Saya menikmati membangun layanan backend, API, dan proyek berorientasi infrastruktur, terutama ketika saya dapat memahami cara kerja sistem di bawahnya alih-alih sepenuhnya mengandalkan abstraksi."
+	},
+	"projects": {
+		"title": "Proyek",
+		"tree_title": "proyek/"
+	},
+	"skills": {
+		"title": "Skill",
+		"body": "### Bahasa Pemrograman\n\n* **TypeScript — 60%**\n* **Go — 25%**\n* **Laravel / PHP — 10%**\n* **Rust — 5%**\n\n### Backend & Keamanan\n\n* Autentikasi\n* Otorisasi\n* RBAC (Role-Based Access Control)\n* OIDC\n* Manajemen sesi\n* Manajemen API key\n* Manajemen pengguna\n* Kontrol akses\n* Pengembangan API backend\n\n### Fokus\n\nArea utama saya adalah **manajemen identitas dan akses** — memastikan pengguna terautentikasi dengan benar, izin diterapkan, dan sumber daya backend hanya dapat diakses oleh aktor yang tepat."
+	},
+	"experience": {
+		"title": "Pengalaman",
+		"body": "### Pengujian Rekayasa AI\n\n**allInclusiveVilla.net — 2 bulan**\n\nMengerjakan pengujian fungsionalitas terkait AI dan aplikasi web, berfokus pada pencarian masalah di berbagai alur pengguna dan memverifikasi apakah sistem berperilaku sesuai yang diharapkan.\n\n### Magang Administrasi\n\n**BKAD Majalengka — 4 bulan**\n\nMenyelesaikan magang empat bulan sebagai staf administrasi, bekerja dengan proses administrasi, data, dan operasi kantor sehari-hari."
+	},
+	"education": {
+		"title": "Pendidikan",
+		"body": "### SMKN 1 Maja\n\n**Rekayasa Perangkat Lunak (Software Engineering)**"
+	},
+	"contact": {
+		"title": "Kontak",
+		"body": "Tertarik untuk bekerja sama, mendiskusikan proyek backend, atau membahas autentikasi dan otorisasi?\n\n**Hubungi saya melalui portofolio atau GitHub.**\n\n* **Email** — [maulananurfanoto10@gmail.com](mailto:maulananurfanoto10@gmail.com)\n* **GitHub** — [github.com/manuTech0](https://github.com/manuTech0)\n* **WhatsApp** — [+62 8511-1323-432](https://wa.me/6285111323432)"
+	},
+	"help": {
+		"title": "Bantuan",
+		"body": "---\n\nPerintah yang tersedia:\n\n- `about` — Tentang saya\n- `projects` — Lihat proyek\n- `skills` — Skill teknis\n- `experience` — Pengalaman kerja\n- `education` — Pendidikan\n- `contact` — Kontak\n- `ls` — Daftar isi direktori\n- `cd` — Ganti direktori\n- `cat` — Baca file\n- `pwd` — Cetak direktori kerja\n- `tree` — Tampilkan pohon sistem file\n- `clear` — Bersihkan terminal\n- `help` — Tampilkan bantuan ini\n- `logout` — Akhiri sesi ini"
+	},
+	"desktop": {
+		"menu_about": "Tentang",
+		"menu_projects": "Proyek",
+		"menu_skills": "Skill",
+		"menu_experience": "Pengalaman",
+		"menu_education": "Pendidikan",
+		"menu_contact": "Kontak",
+		"menu_clear": "Bersihkan",
+		"menu_help": "Bantuan",
+		"menu_logout": "Logout",
+		"menu_terminal": "Terminal",
+		"title_about": "Tentang Saya",
+		"title_projects": "Proyek",
+		"title_skills": "Skill",
+		"title_contact": "Kontak",
+		"title_terminal": "Terminal",
+		"contact_label": "Kontak",
+		"skill_label": "Skill",
+		"profile_name": "Portofolio Maulana Nurfanoto",
+		"window_empty": "Konten untuk \"{title}\" belum diisi."
+	},
+	"ssh": {
+		"menu_about": "Tentang",
+		"menu_projects": "Proyek",
+		"menu_skills": "Skill",
+		"menu_experience": "Pengalaman",
+		"menu_education": "Pendidikan",
+		"menu_contact": "Kontak",
+		"menu_clear": "Bersihkan",
+		"menu_help": "Bantuan",
+		"menu_logout": "Logout",
+		"connecting": "Menghubungkan ke server portofolio...",
+		"welcome": "Selamat datang di server portofolio.",
+		"connection_closed": "Koneksi ke portofolio ditutup.",
+		"login_as": "login sebagai",
+		"last_login": "Login terakhir: {time}"
+	}
 }

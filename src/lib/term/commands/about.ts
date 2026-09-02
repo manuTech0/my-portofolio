@@ -1,5 +1,7 @@
 import type { Term } from "../types";
 import { defaultHelpCommand, defineCommand } from "../utils";
+import { getLocale } from "$lib/paraglide/runtime";
+import * as m from "$lib/paraglide/messages";
 
 export default defineCommand({
   command: "about",
@@ -30,6 +32,6 @@ My primary language is TypeScript, while I also work with Go, Laravel/PHP, and R
     if (args.get("--help")) {
       return defaultHelpCommand(md, this);
     }
-    return md.render(this.content.body);
+    return md.render(m["about.body"]());
   },
 });

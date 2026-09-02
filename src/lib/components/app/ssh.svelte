@@ -6,6 +6,7 @@
   import { Button } from "$lib/components/ui/button";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
   import CaretDownIcon from "phosphor-svelte/lib/CaretDownIcon";
+  import * as m from "$lib/paraglide/messages";
 
   type Phase = "connecting" | "login" | "session";
 
@@ -92,7 +93,7 @@
 
     if (command === "logout") {
       await sleep(60);
-      push("out", "Connection to portfolio closed.");
+      push("out", m["ssh.connection_closed"]());
       await sleep(350);
       startLogin();
       return;
@@ -110,15 +111,15 @@
   }
 
   const menuItems = [
-    { cmd: "about", label: "About" },
-    { cmd: "projects", label: "Projects" },
-    { cmd: "skills", label: "Skills" },
-    { cmd: "experience", label: "Experience" },
-    { cmd: "education", label: "Education" },
-    { cmd: "contact", label: "Contact" },
-    { cmd: "clear", label: "Clear" },
-    { cmd: "help", label: "Help" },
-    { cmd: "logout", label: "Logout" },
+    { cmd: "about", get label() { return m["ssh.menu_about"](); } },
+    { cmd: "projects", get label() { return m["ssh.menu_projects"](); } },
+    { cmd: "skills", get label() { return m["ssh.menu_skills"](); } },
+    { cmd: "experience", get label() { return m["ssh.menu_experience"](); } },
+    { cmd: "education", get label() { return m["ssh.menu_education"](); } },
+    { cmd: "contact", get label() { return m["ssh.menu_contact"](); } },
+    { cmd: "clear", get label() { return m["ssh.menu_clear"](); } },
+    { cmd: "help", get label() { return m["ssh.menu_help"](); } },
+    { cmd: "logout", get label() { return m["ssh.menu_logout"](); } },
   ];
 
   async function runMenuCommand(name: string) {
@@ -224,9 +225,9 @@
     username = finalUser;
 
     await sleep(120);
-    push("out", `Last login: ${lastLoginString()}`);
+    push("out", m["ssh.last_login"]({ time: lastLoginString() }));
     await sleep(120);
-    push("out", "Welcome to portfolio server.");
+    push("out", m["ssh.welcome"]());
     await sleep(160);
     push("out", "");
 
@@ -254,7 +255,7 @@
 
   async function connectSequence() {
     await sleep(350);
-    push("out", "Connecting to portfolio server...");
+    push("out", m["ssh.connecting"]());
     await sleep(750);
     push("out", "SSH-2.0-OpenSSH_3.5");
     await sleep(420);
