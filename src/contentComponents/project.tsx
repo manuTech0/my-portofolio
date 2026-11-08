@@ -4,12 +4,14 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 import { useMediaQuery } from "usehooks-ts"
 import { motion } from "framer-motion"
 import { useInView } from "react-cool-inview"
+import { useTranslation } from "react-i18next"
 import TypingText from "@/components/typingText"
 import AdaptiveImage from "@/components/adaptiveImage"
 
 export default function Projects(
 	props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
 ) {
+	const { t } = useTranslation()
 	const isSm = useMediaQuery("(min-width: 640px)")
 
 	const [sliderRef, instanceRef] = useKeenSlider(
@@ -26,34 +28,34 @@ export default function Projects(
 	const { observe: observeCard1, inView: inViewCard1 } = useInView({ threshold: 0.3 })
 	const { observe: observeCard2, inView: inViewCard2 } = useInView({ threshold: 0.3 })
 
-	const projectsData = [
-		{
+	const projectsData = {
+		todo: {
 			ref: observeCard1,
 			inView: inViewCard1,
 			imagePosition: "left",
 			image: {
 				baseName: "web-todolist",
-				alt: "todo list project"
+				alt: t("projects.todo.alt")
 			},
-			title: "Todo List App",
+			title: t("projects.todo.title"),
 			url: "https://todo.manu-tech.my.id",
-			description: "This task management tool is designed for both quick access and long-term use. You can choose guest mode if you prefer to manage tasks without creating an account, or log in to securely save your data for future sessions. Powered by a GraphQL API, it supports OAuth and email-password login, offers complete CRUD features, and enables multi-device sync for maximum flexibility.",
+			description: t("projects.todo.description"),
 			textAnimation: { x: 100 }
 		},
-		{
+		blog: {
 			ref: observeCard2,
 			inView: inViewCard2,
 			imagePosition: "right",
 			image: {
 				baseName: "web-blog",
-				alt: "blog app project"
+				alt: t("projects.blog.alt")
 			},
-			title: "Blog App",
+			title: t("projects.blog.title"),
 			url: "https://blog.manu-tech.my.id",
-			description: "This modern publishing platform is fully integrated with the same GraphQL API. It features a role-based system from regular users to superusers, an intuitive admin panel, and full markdown support, making writing and managing content effortless.",
+			description: t("projects.blog.description"),
 			textAnimation: { x: -100 }
 		},
-	]
+	}
 
 	return (
 		<section {...props} className="min-h-full p-2 flex flex-col gap-6 text-white">
@@ -61,9 +63,9 @@ export default function Projects(
 				ref={isSm ? undefined : sliderRef}
 				className={`w-full h-full flex ${isSm ? "flex-col" : "keen-slider"}`}
 			>
-				{projectsData.map((project, index) => (
+				{Object.entries(projectsData).map(([key, project]) => (
 					<div
-						key={index}
+						key={key}
 						ref={project.ref}
 						className={`w-full p-6 flex justify-between items-center flex-col ${
 							isSm 
@@ -106,7 +108,7 @@ export default function Projects(
 					{...(inView && { animate: { x: 0, opacity: 1 } })}
 					transition={{ duration: 0.6, delay: 0.4 }}
 					onClick={() => instanceRef.current?.prev()}
-					aria-label="Previous page"
+					aria-label={t("projects.prev")}
 					className="flex-1 bg-transparent flex justify-center items-end border-b-2 hover:bg-white hover:border-yellow-500 text-yellow-500 shadow rounded-lg px-3 py-1"
 				>
 					<ArrowLeft size={16} />
@@ -116,7 +118,7 @@ export default function Projects(
 					{...(inView && { animate: { x: 0, opacity: 1 } })}
 					transition={{ duration: 0.6, delay: 0.4 }}
 					onClick={() => instanceRef.current?.next()}
-					aria-label="Next page"
+					aria-label={t("projects.next")}
 					className="flex-1 bg-transparent flex justify-center items-end border-b-2 hover:bg-white hover:border-yellow-500 text-yellow-500 shadow rounded-lg px-3 py-1"
 				>
 					<ArrowRight size={16} />

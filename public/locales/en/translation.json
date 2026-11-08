@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "home": {
+    "greeting": "Hello, I'm Maulana Nurfanoto",
+    "title": "Backend Developer & IT Technician",
+    "subtitle": "Building backend systems, managing Linux infrastructure, and solving technical problems. Focused on APIs, authentication systems, servers, and IT operations.",
+    "projects": "Projects",
+    "blog": "Blog",
+    "curriculumVitae": "Curriculum Vitae"
+  },
+  "about": {
+    "avatarAlt": "Avatar of Maulana Nurfanoto",
+    "bio1": "I'm a Backend Developer and IT Technician. My backend work focuses on API development, authentication and authorization, database management, and server-side system design. I work with TypeScript, Laravel, Rust, and other backend technologies. On the IT side, I have hands-on experience with hardware and software troubleshooting, network configuration, device maintenance, and Linux and Windows system administration.",
+    "bio2": "Outside of work, I enjoy exploring Linux, building home servers, experimenting with self-hosted applications, and making the most of available hardware. I like understanding how systems work, identifying root causes, and finding practical solutions. Open to backend development, IT support, technical operations, and project collaborations."
+  },
+  "tech": {
+    "typescript": "TypeScript",
+    "laravel": "Laravel",
+    "rust": "Rust",
+    "postgresql": "PostgreSQL",
+    "linux": "Linux",
+    "windows": "Windows 10/11",
+    "docker": "Docker",
+    "virtualization": "Virtualization",
+    "networking": "Networking",
+    "authentication": "Authentication & Authorization",
+    "api": "REST API",
+    "ssh": "SSH",
+    "server": "Server Administration",
+    "hardware": "Hardware Troubleshooting"
+  },
+  "projects": {
+    "todo": {
+      "alt": "Todo list application project",
+      "title": "Todo List Application",
+      "description": "A task management application with guest mode and user authentication. Features a GraphQL API, OAuth, email and password login, CRUD operations, and cross-device data synchronization."
+    },
+    "blog": {
+      "alt": "Blog application project",
+      "title": "Blog Application",
+      "description": "A content publishing platform integrated with a GraphQL API. Includes role-based access control, an administration panel, and Markdown support for content management."
+    },
+    "prev": "Previous page",
+    "next": "Next page"
+  },
+  "contact": {
+    "myContact": "Get in Touch",
+    "messageMe": "Send a Message",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "emailValue": "maulananurfanoto10@gmail.com",
+    "whatsappValue": "+62 882-2235-8226",
+    "githubValue": "manuTech0",
+    "linkedinValue": "Maulana Nurfanoto",
+    "formName": "Name",
+    "formEmail": "Email",
+    "formMessage": "Message",
+    "placeholderName": "John Doe",
+    "placeholderEmail": "johndoe@email.com",
+    "placeholderMessage": "Write your message...",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "failed": "Failed to send message",
+    "networkError": "Network is not responding"
+  },
+  "validation": {
+    "nameMin": "Name must contain at least 5 characters",
+    "emailInvalid": "Invalid email address",
+    "emailMin": "Email must contain at least 8 characters",
+    "messageMin": "Message must contain at least 8 characters"
+  },
+  "loading": {
+    "loading": "Loading",
+    "wait": "Preparing your content. Please wait."
+  },
+  "social": {
+    "github": "Visit my GitHub profile",
+    "email": "Contact me via email"
+  }
+}

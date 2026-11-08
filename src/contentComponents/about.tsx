@@ -2,10 +2,12 @@ import AdaptiveImage from "@/components/adaptiveImage"
 import TypingText from "@/components/typingText"
 import { useInView } from "react-cool-inview"
 import Marquee from "react-fast-marquee"
+import { useTranslation } from "react-i18next"
 
 export default function About(
     props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
 ) {
+    const { t } = useTranslation()
     const { observe, inView } = useInView({ threshold: 0.4 })
 
     return (
@@ -15,7 +17,7 @@ export default function About(
                     <div className="relative">
                         <AdaptiveImage 
                             className="w-50 h-50 rounded-lg object-contain z-10 border-b-2 border-black"
-                            alt="avatar from Maulana Nurfanoto"
+                            alt={t("about.avatarAlt")}
                             style={{
                                 background:
                                     "linear-gradient(to top, #eab308 2%, transparent 98%)",
@@ -33,17 +35,17 @@ export default function About(
                     <div className="text-[0.85em] sm:text-lg font-sriracha text-gray-200">
                         <p className="mb-2">
                             <TypingText
-                                text="A Freelancer specializing in web development, APIs, and Linux-based systems. I work with Next.js, React, PostgreSQL, and Docker to build scalable and reliable applications. Beyond coding, I focus on creating solutions that are not only functional but also efficient, secure, and user-friendly."
+                                text={t("about.bio1")}
                                 inView={inView}
                                 duration={0.02}
                             />
                         </p>
                         <p>
                             <TypingText
-                                text="I’m open to freelance projects and collaborations where I can contribute both technical expertise and a problem-solving mindset to bring ideas into reality."
+                                text={t("about.bio2")}
                                 inView={inView}
                                 duration={0.02}
-                                reverse={true}
+                                delay={0.5}
                             />
                         </p>
                     </div>
@@ -51,13 +53,20 @@ export default function About(
             </div>
 
             <Marquee gradient={false} speed={40} className="my-4 text-yellow-500 font-semibold">
-                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">Next.js</div>
-                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">React.js</div>
-                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">GraphQL</div>
-                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">PHP</div>
-                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">Laravel</div>
-                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">PostgreSQL</div>
-                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">Docker</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.typescript")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.laravel")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.rust")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.postgresql")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.authentication")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.api")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.linux")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.docker")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.virtualization")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.server")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.networking")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.ssh")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.windows")}</div>
+                <div className="border-e-2 border-yellow-500 px-3 sm:px-14">{t("tech.hardware")}</div>
             </Marquee>
         </section>
     )

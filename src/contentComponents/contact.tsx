@@ -4,27 +4,29 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
-import { Github, LinkedinIcon, Mail, PhoneCall } from "lucide-react"
+import { Github, LinkedinIcon, Mail, PhoneCall, type LucideIcon } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "react-cool-inview"
 import { EditableField } from "@/components/editableField"
 import { useState, useCallback } from "react"
+import { useTranslation } from "react-i18next"
+import type { TFunction } from "i18next"
 import { toast } from "sonner"
 
-const contactSchema = z.object({
+const buildContactSchema = (t: TFunction) => z.object({
   name: z.string()
-    .min(5, "Name must be at least 5 characters")
+    .min(5, t("validation.nameMin"))
     .transform(val => DOMPurify.sanitize(val)),
   email: z.string()
-    .email("Invalid email address")
-    .min(8, "Email must be at least 8 characters")
+    .email(t("validation.emailInvalid"))
+    .min(8, t("validation.emailMin"))
     .transform(val => DOMPurify.sanitize(val)),
   message: z.string()
-    .min(8, "Message must be at least 8 characters")
+    .min(8, t("validation.messageMin"))
     .transform(val => DOMPurify.sanitize(val))
 })
 
-type ContactFormData = z.infer<typeof contactSchema>
+type ContactFormData = z.infer<ReturnType<typeof buildContactSchema>>
 
 const SEND_MESSAGE_MUTATION = `
   mutation SendMessage($email: String!, $name: String!, $message: String!) {
@@ -35,37 +37,41 @@ const SEND_MESSAGE_MUTATION = `
   }
 `
 
-// Contact info data untuk reduce repetition
-const contactInfo = [
+// Contact links data; label/value come from translations, URLs are language-agnostic
+const contactLinks = [
   {
-    label: "Email",
+    labelKey: "contact.email",
+    valueKey: "contact.emailValue",
     icon: Mail,
-    value: "maulananurfanoto10@gmail.com",
-    href: "mailto:maulananurfanoto10@gmail.com",
-    className: "text-sm"
+    href: "mailto:maulananurfanoto10@gmail.com"
   },
   {
-    label: "WhatsApp",
+    labelKey: "contact.whatsapp",
+    valueKey: "contact.whatsappValue",
     icon: PhoneCall,
-    value: "+62 882-2235-8226",
     href: "https://wa.me/6288222358226"
   },
   {
-    label: "GitHub",
+    labelKey: "contact.github",
+    valueKey: "contact.githubValue",
     icon: Github,
-    value: "manuTech0",
     href: "https://github.com/manuTech0"
   },
   {
-    label: "LinkedIn",
+    labelKey: "contact.linkedin",
+    valueKey: "contact.linkedinValue",
     icon: LinkedinIcon,
-    value: "Maulana Nurfanoto",
     href: "https://www.linkedin.com/in/maulana-nurfanoto-5256a0318"
   }
 ] as const
 
 // Contact item component untuk reduce duplication
-const ContactItem = ({ label, icon: Icon, value, href }: typeof contactInfo[number]) => (
+const ContactItem = ({ label, icon: Icon, value, href }: {
+  label: string
+  icon: LucideIcon
+  value: string
+  href: string
+}) => (
   <li>
     <ol className="flex flex-col mt-2">
       <motion.li
@@ -96,11 +102,12 @@ const ContactItem = ({ label, icon: Icon, value, href }: typeof contactInfo[numb
 )
 
 export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
+  const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
   const { observe } = useInView({ threshold: 0.3 })
 
   const form = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
+    resolver: zodResolver(buildContactSchema(t)),
     defaultValues: {
       name: "",
       email: "",
@@ -126,31 +133,31 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
         })
       })
       if (!response.ok) {
-        throw new Error("Network response was not ok")
+        throw new Error(t("contact.networkError"))
       }
 
       const result = await response.json()
 
       if (result.errors) {
-        throw new Error(result.errors[0]?.message || "Failed to send message")
+        throw new Error(result.errors[0]?.message || t("contact.failed"))
       }
       
       const { success, message } = result.data.sendMessage
         
       if (success) {
-        toast.success(message || "Message sent successfully!")
+        toast.success(message || t("contact.success"))
         form.reset()
       } else {
-        toast.error(message || "Failed to send message")
+        toast.error(message || t("contact.failed"))
       }
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Failed to send message"
+      const errorMessage = error instanceof Error ? error.message : t("contact.failed")
       toast.error(errorMessage)
       console.error("Send message error:", error)
     } finally {
       setLoading(false)
     }
-  }, [form])
+  }, [form, t])
 
   return (
     <section {...props} className="min-h-full flex justify-center items-center">
@@ -158,14 +165,20 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
         {/* Contact Information Section */}
         <div className="flex-1 border-gray-500 border-b md:border-b-0 md:border-e p-4">
           <h2 className="md:text-right text-2xl">
-            <span className="md:hidden">- </span>My Contact
+            <span className="md:hidden">- </span>{t("contact.myContact")}
             <span className="hidden md:inline-block">-</span>
           </h2>
 
           <div className="flex justify-start ms-4 sm:ms-4 sm:justify-end md:items-center h-full">
             <ul className="text-left text-white md:text-right">
-              {contactInfo.map((info) => (
-                <ContactItem key={info.label} {...info} />
+              {contactLinks.map((link) => (
+                <ContactItem
+                  key={link.labelKey}
+                  label={t(link.labelKey)}
+                  value={t(link.valueKey)}
+                  icon={link.icon}
+                  href={link.href}
+                />
               ))}
             </ul>
           </div>
@@ -173,7 +186,7 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
 
         {/* Message Form Section */}
         <div className="flex-1 p-4 border-t md:border-t-0 md:border-s border-gray-500 flex flex-col justify-start">
-          <h2 className="text-2xl">- Message Me</h2>
+          <h2 className="text-2xl">- {t("contact.messageMe")}</h2>
           
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)} className="lg:pe-10 md:pe-10 w-full sm:w-64">
@@ -183,7 +196,7 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
                 render={({ field }) => (
                   <FormItem className="mt-2">
                     <FormControl>
-                      <EditableField {...field} label="Name" placeholder="John Doe" />
+                      <EditableField {...field} label={t("contact.formName")} placeholder={t("contact.placeholderName")} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -196,7 +209,7 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
                 render={({ field }) => (
                   <FormItem className="mt-2">
                     <FormControl>
-                      <EditableField {...field} type="email" label="Email" placeholder="johndoe@email.com" />
+                      <EditableField {...field} type="email" label={t("contact.formEmail")} placeholder={t("contact.placeholderEmail")} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -209,7 +222,7 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
                 render={({ field }) => (
                   <FormItem className="mt-2 w-full">
                     <FormControl>
-                      <EditableField {...field} placeholder="Hope you're well" label="Message" />
+                      <EditableField {...field} placeholder={t("contact.placeholderMessage")} label={t("contact.formMessage")} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -222,7 +235,7 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
                 type="submit" 
                 disabled={loading}
               >
-                {loading ? "Sending..." : "Send Message"}
+                {loading ? t("contact.sending") : t("contact.send")}
               </Button>
             </form>
           </Form>

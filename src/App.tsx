@@ -13,6 +13,7 @@ import Navbar from "./Navbar";
 import { GithubIcon, Loader, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 import type { componentsRef } from "./lib/types";
 import { Toaster } from "./components/ui/sonner";
 
@@ -23,19 +24,23 @@ const Projects = lazy(() => import("./contentComponents/project"));
 const Contact = lazy(() => import("./contentComponents/contact"));
 
 // Loading component untuk reuse
-const LoadingScreen = () => (
-  <div className="h-dvh w-screen z-[200] bg-color-gradient absolute top-0 left-0 flex justify-center items-center flex-col">
-    <div className="animate-bounce">
-      <h1 className="flex">
-        <Loader className="animate-spin me-2" />
-        <span className="typing-dots">Loading</span>
-      </h1>
+const LoadingScreen = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="h-dvh w-screen z-[200] bg-color-gradient absolute top-0 left-0 flex justify-center items-center flex-col">
+      <div className="animate-bounce">
+        <h1 className="flex">
+          <Loader className="animate-spin me-2" />
+          <span className="typing-dots">{t("loading.loading")}</span>
+        </h1>
+      </div>
+      <p>{t("loading.wait")}</p>
     </div>
-    <p>We're getting things ready. Please hold on.</p>
-  </div>
-);
+  );
+};
 
 function App() {
+  const { t } = useTranslation();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPending, startTransition] = useTransition();
   const divRef = useRef<HTMLDivElement | null>(null);
@@ -279,12 +284,12 @@ function App() {
             >
               <ul className="flex justify-around gap-4 mb-2 text-md items-center me-4 text-gray-700">
                 <li className="border-gray-700 border-b-2 hover:text-yellow-400 cursor-pointer transform-gpu hover:-translate-y-2">
-                  <a href="https://github.com/manuTech0" target="_blank" title="redirect to github" aria-label="redirect to github">
+                  <a href="https://github.com/manuTech0" target="_blank" title={t("social.github")} aria-label={t("social.github")}>
                     <GithubIcon />
                   </a>
                 </li>
                 <li className="border-gray-700 border-b-2 hover:text-yellow-400 cursor-pointer transform-gpu hover:-translate-y-2">
-                  <a href="mailto:maulananurfanoto10@gmail.com" target="_blank" title="redirect to manu email" aria-label="redirect to manu email">
+                  <a href="mailto:maulananurfanoto10@gmail.com" target="_blank" title={t("social.email")} aria-label={t("social.email")}>
                     <Mail />
                   </a>
                 </li>

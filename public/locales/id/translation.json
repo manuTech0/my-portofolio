@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "projects": "Proyek",
+    "contact": "Kontak"
+  },
+  "home": {
+    "greeting": "Halo, saya Maulana Nurfanoto",
+    "title": "Backend Developer & IT Technician",
+    "subtitle": "Membangun sistem backend, mengelola infrastruktur Linux, dan menyelesaikan masalah teknis. Berfokus pada API, sistem autentikasi, server, serta operasional IT.",
+    "projects": "Proyek",
+    "blog": "Blog",
+    "curriculumVitae": "Curriculum Vitae"
+  },
+  "about": {
+    "avatarAlt": "Avatar Maulana Nurfanoto",
+    "bio1": "Saya adalah Backend Developer dan IT Technician. Di bidang backend, saya berfokus pada pengembangan API, authentication & authorization, pengelolaan database, serta perancangan sistem server-side. Saya terbiasa bekerja dengan TypeScript, Laravel, Rust, dan berbagai teknologi pendukung backend. Di sisi IT, saya memiliki pengalaman menangani troubleshooting hardware dan software, konfigurasi jaringan, maintenance perangkat, serta pengelolaan sistem Linux dan Windows.",
+    "bio2": "Di luar pekerjaan, saya senang mengeksplorasi Linux, membangun home server, mencoba self-hosted applications, dan mengoptimalkan perangkat keras yang tersedia. Saya menikmati proses memahami bagaimana sebuah sistem bekerja, mencari akar masalah, dan menemukan solusi yang praktis. Terbuka untuk pekerjaan backend, IT support, technical operations, dan kolaborasi proyek."
+  },
+  "tech": {
+    "typescript": "TypeScript",
+    "laravel": "Laravel",
+    "rust": "Rust",
+    "postgresql": "PostgreSQL",
+    "linux": "Linux",
+    "windows": "Windows 10/11",
+    "docker": "Docker",
+    "virtualization": "Virtualization",
+    "networking": "Networking",
+    "authentication": "Authentication & Authorization",
+    "api": "REST API",
+    "ssh": "SSH",
+    "server": "Server Administration",
+    "hardware": "Hardware Troubleshooting"
+  },
+  "projects": {
+    "todo": {
+      "alt": "Proyek aplikasi daftar tugas",
+      "title": "Aplikasi Todo List",
+      "description": "Aplikasi manajemen tugas dengan dukungan guest mode dan autentikasi pengguna. Dilengkapi GraphQL API, OAuth, email dan password login, operasi CRUD, serta sinkronisasi data antarperangkat."
+    },
+    "blog": {
+      "alt": "Proyek aplikasi blog",
+      "title": "Aplikasi Blog",
+      "description": "Platform penerbitan konten yang terintegrasi dengan GraphQL API. Memiliki sistem role-based access control, panel administrasi, dan dukungan Markdown untuk pengelolaan konten."
+    },
+    "prev": "Halaman sebelumnya",
+    "next": "Halaman berikutnya"
+  },
+  "contact": {
+    "myContact": "Kontak Saya",
+    "messageMe": "Kirim Pesan",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "emailValue": "maulananurfanoto10@gmail.com",
+    "whatsappValue": "+62 882-2235-8226",
+    "githubValue": "manuTech0",
+    "linkedinValue": "Maulana Nurfanoto",
+    "formName": "Nama",
+    "formEmail": "Email",
+    "formMessage": "Pesan",
+    "placeholderName": "John Doe",
+    "placeholderEmail": "johndoe@email.com",
+    "placeholderMessage": "Tuliskan pesan Anda...",
+    "send": "Kirim Pesan",
+    "sending": "Mengirim...",
+    "success": "Pesan berhasil dikirim!",
+    "failed": "Gagal mengirim pesan",
+    "networkError": "Jaringan tidak merespons"
+  },
+  "validation": {
+    "nameMin": "Nama minimal 5 karakter",
+    "emailInvalid": "Alamat email tidak valid",
+    "emailMin": "Email minimal 8 karakter",
+    "messageMin": "Pesan minimal 8 karakter"
+  },
+  "loading": {
+    "loading": "Memuat",
+    "wait": "Sedang menyiapkan. Mohon tunggu sebentar."
+  },
+  "social": {
+    "github": "Kunjungi profil GitHub saya",
+    "email": "Hubungi saya melalui email"
+  }
+}

@@ -6,6 +6,7 @@ interface TypingProps {
   duration?: number
   inView: boolean
   reverse?: boolean
+  delay?: number
 }
 
 export default function TypingText({
@@ -13,6 +14,7 @@ export default function TypingText({
   duration = 0.05,
   inView = true,
   reverse = false,
+  delay = 0,
 }: TypingProps) {
   const letters = text.split("").map((c) => (c === " " ? "\u00A0" : c))
   const controls = useAnimation()
@@ -22,9 +24,11 @@ export default function TypingText({
     visible: (i: number) => ({
       opacity: 1,
       transition: {
-        delay: reverse
-          ? duration * (letters.length - i - 1)
-          : duration * i,
+        delay:
+          delay +
+          (reverse
+            ? duration * (letters.length - i - 1)
+            : duration * i),
       },
     }),
   }
