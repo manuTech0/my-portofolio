@@ -1,5 +1,4 @@
 import { z } from "zod"
-import DOMPurify from "dompurify"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
@@ -8,34 +7,17 @@ import { Github, LinkedinIcon, Mail, PhoneCall, type LucideIcon } from "lucide-r
 import { motion } from "framer-motion"
 import { useInView } from "react-cool-inview"
 import { EditableField } from "@/components/editableField"
-import { useState, useCallback } from "react"
+import { useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import type { TFunction } from "i18next"
-import { toast } from "sonner"
 
 const buildContactSchema = (t: TFunction) => z.object({
-  name: z.string()
-    .min(5, t("validation.nameMin"))
-    .transform(val => DOMPurify.sanitize(val)),
-  email: z.string()
-    .email(t("validation.emailInvalid"))
-    .min(8, t("validation.emailMin"))
-    .transform(val => DOMPurify.sanitize(val)),
-  message: z.string()
-    .min(8, t("validation.messageMin"))
-    .transform(val => DOMPurify.sanitize(val))
+  name: z.string().min(5, t("validation.nameMin")),
+  email: z.string().email(t("validation.emailInvalid")).min(8, t("validation.emailMin")),
+  message: z.string().min(8, t("validation.messageMin"))
 })
 
 type ContactFormData = z.infer<ReturnType<typeof buildContactSchema>>
-
-const SEND_MESSAGE_MUTATION = `
-  mutation SendMessage($email: String!, $name: String!, $message: String!) {
-    sendMessage(email: $email, name: $name, message: $message) {
-      success
-      message
-    }
-  }
-`
 
 // Contact links data; label/value come from translations, URLs are language-agnostic
 const contactLinks = [
@@ -103,7 +85,6 @@ const ContactItem = ({ label, icon: Icon, value, href }: {
 
 export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
   const { t } = useTranslation()
-  const [loading, setLoading] = useState(false)
   const { observe } = useInView({ threshold: 0.3 })
 
   const form = useForm<ContactFormData>({
@@ -115,49 +96,11 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
     }
   })
 
-  // Memoize submit handler
-  const handleSubmit = useCallback(async (data: ContactFormData) => {
-    setLoading(true)
-    
-    try {
-      const response = await fetch("https://api.manu-tech.my.id/graphql", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          query: SEND_MESSAGE_MUTATION,
-          variables: {
-            email: data.email,
-            name: data.name,
-            message: data.message
-          }
-        })
-      })
-      if (!response.ok) {
-        throw new Error(t("contact.networkError"))
-      }
-
-      const result = await response.json()
-
-      if (result.errors) {
-        throw new Error(result.errors[0]?.message || t("contact.failed"))
-      }
-      
-      const { success, message } = result.data.sendMessage
-        
-      if (success) {
-        toast.success(message || t("contact.success"))
-        form.reset()
-      } else {
-        toast.error(message || t("contact.failed"))
-      }
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : t("contact.failed")
-      toast.error(errorMessage)
-      console.error("Send message error:", error)
-    } finally {
-      setLoading(false)
-    }
-  }, [form, t])
+  const handleSubmit = useCallback((data: ContactFormData) => {
+    const subject = encodeURIComponent(`Portfolio: ${data.name}`)
+    const body = encodeURIComponent(`${data.message}\n\nFrom: ${data.name} <${data.email}>`)
+    window.location.href = `mailto:maulananurfanoto10@gmail.com?subject=${subject}&body=${body}`
+  }, [])
 
   return (
     <section {...props} className="min-h-full flex justify-center items-center">
@@ -232,10 +175,9 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
               <Button 
                 variant="outline" 
                 className="mt-4 w-full" 
-                type="submit" 
-                disabled={loading}
+                type="submit"
               >
-                {loading ? t("contact.sending") : t("contact.send")}
+                {t("contact.send")}
               </Button>
             </form>
           </Form>

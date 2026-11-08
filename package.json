@@ -13,16 +13,8 @@
     "@hookform/resolvers": "^5.2.1",
     "@radix-ui/react-label": "^2.1.7",
     "@tailwindcss/vite": "^4.1.12",
-    "@types/express-rate-limit": "^6.0.2",
-    "@types/react-google-recaptcha": "^2.1.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "cn": "^0.5.2",
-    "cors": "^2.8.5",
-    "dompurify": "^3.2.7",
-    "embla-carousel-react": "^8.6.0",
-    "express": "^5.1.0",
-    "express-rate-limit": "^8.1.0",
     "framer-motion": "^12.23.12",
     "i18next": "^27.0.1",
     "i18next-browser-languagedetector": "^8.3.0",
@@ -35,8 +27,6 @@
     "react-cool-inview": "^3.0.1",
     "react-dom": "^19.1.1",
     "react-fast-marquee": "^1.6.5",
-    "react-google-recaptcha": "^3.1.0",
-    "react-google-recaptcha-v3": "^1.11.0",
     "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.62.0",
     "react-i18next": "^18.0.0",
@@ -63,5 +53,8 @@
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2",
     "vite-plugin-compression": "^0.5.1"
+  },
+  "overrides": {
+    "minimatch": "11.0.1"
   }
 }

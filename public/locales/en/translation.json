@@ -65,11 +65,7 @@
     "placeholderName": "John Doe",
     "placeholderEmail": "johndoe@email.com",
     "placeholderMessage": "Write your message...",
-    "send": "Send Message",
-    "sending": "Sending...",
-    "success": "Message sent successfully!",
-    "failed": "Failed to send message",
-    "networkError": "Network is not responding"
+    "send": "Send Message"
   },
   "validation": {
     "nameMin": "Name must contain at least 5 characters",

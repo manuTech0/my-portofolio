@@ -65,11 +65,7 @@
     "placeholderName": "John Doe",
     "placeholderEmail": "johndoe@email.com",
     "placeholderMessage": "Tuliskan pesan Anda...",
-    "send": "Kirim Pesan",
-    "sending": "Mengirim...",
-    "success": "Pesan berhasil dikirim!",
-    "failed": "Gagal mengirim pesan",
-    "networkError": "Jaringan tidak merespons"
+    "send": "Kirim Pesan"
   },
   "validation": {
     "nameMin": "Nama minimal 5 karakter",
