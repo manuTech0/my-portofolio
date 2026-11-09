@@ -178,6 +178,12 @@
   background: linear-gradient(90deg, rgba(209, 222, 227, 1) 0%, rgba(212, 182, 51, 1) 24%, rgba(233, 242, 237, 1) 50%, rgba(212, 182, 51, 1) 77%, rgba(232, 230, 209, 1) 100%);
 }
 
+@media (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
 @layer base {
 
   * {
