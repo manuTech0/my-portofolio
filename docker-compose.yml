@@ -4,7 +4,7 @@ services:
       context: .
       target: web
     ports:
-      - "80:80"
+      - "9100:80"
     depends_on:
       - api
 
