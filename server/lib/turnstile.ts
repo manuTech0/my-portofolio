@@ -54,7 +54,8 @@ export async function verifyTurnstile(
 
     let payload: Record<string, unknown>
     try {
-      payload = (await res.text()) ? JSON.parse(await res.text()) : {}
+      const text = await res.text()
+      payload = text ? JSON.parse(text) : {}
     } catch {
       return { success: false, reason: "service_unavailable", message: "Turnstile verification service returned an invalid response" }
     }
