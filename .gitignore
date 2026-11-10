@@ -23,3 +23,12 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Env variants carry real secrets; keep the safe template
+.env.*
+!.env.example
+
+# Build caches & test artifacts
+*.tsbuildinfo
+test-results
+playwright-report
