@@ -10,6 +10,8 @@ import React, {
   useCallback
 } from "react";
 import Navbar from "./Navbar";
+import ShootingStars from "./components/ShootingStars";
+import LanguageToggle from "./components/LanguageToggle";
 import { GithubIcon, Loader, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
@@ -223,6 +225,7 @@ function App() {
       <Toaster position="top-center" />
 
       <div className="lg:px-10 md:px-10 bg-color-gradient fixed top-0 left-0 w-screen min-h-dvh">
+        {readyToShow && <ShootingStars active={readyToShow} />}
         {!readyToShow ? (
           <LoadingScreen />
         ) : (
@@ -283,6 +286,9 @@ function App() {
               transition={{ duration: 0.5 }}
             >
               <ul className="flex justify-around gap-4 mb-2 text-md items-center me-4 text-gray-700">
+                <li className="md:hidden">
+                  <LanguageToggle className="border-gray-700 border-b-2 hover:text-yellow-400 cursor-pointer text-gray-700 uppercase" />
+                </li>
                 <li className="border-gray-700 border-b-2 hover:text-yellow-400 cursor-pointer transform-gpu hover:-translate-y-2">
                   <a href="https://github.com/manuTech0" target="_blank" title={t("social.github")} aria-label={t("social.github")}>
                     <GithubIcon />

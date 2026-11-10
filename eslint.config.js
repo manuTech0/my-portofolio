@@ -20,4 +20,11 @@ export default tseslint.config([
       globals: globals.browser,
     },
   },
+  {
+    // shadcn ui templates legitimately share non-component exports
+    files: ["src/components/ui/**"],
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
+  },
 ])

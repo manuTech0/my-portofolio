@@ -65,7 +65,16 @@
     "placeholderName": "John Doe",
     "placeholderEmail": "johndoe@email.com",
     "placeholderMessage": "Tuliskan pesan Anda...",
-    "send": "Kirim Pesan"
+    "send": "Kirim Pesan",
+    "sentCountdown": "Terkirim berhasil · {{seconds}}s",
+    "submitting": "Mengirim...",
+    "success": "Pesan terkirim berhasil.",
+    "turnstileRequired": "Harap lengkapi widget verifikasi sebelum mengirim.",
+    "turnstileError": "Verifikasi gagal. Segarkan widget dan coba lagi.",
+    "errorRateLimited": "Terlalu banyak percobaan. Silakan tunggu {{retryAfter}} detik sebelum mencoba lagi.",
+    "errorIdempotencyConflict": "Pesan dengan referensi ini sudah dikirim dengan konten yang berbeda.",
+    "errorServer": "Terjadi kesalahan. Silakan coba lagi nanti.",
+    "errorNetwork": "Kesalahan jaringan. Periksa koneksi Anda dan coba lagi."
   },
   "validation": {
     "nameMin": "Nama minimal 5 karakter",

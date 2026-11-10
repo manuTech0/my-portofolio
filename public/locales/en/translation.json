@@ -65,7 +65,16 @@
     "placeholderName": "John Doe",
     "placeholderEmail": "johndoe@email.com",
     "placeholderMessage": "Write your message...",
-    "send": "Send Message"
+    "send": "Send Message",
+    "sentCountdown": "Sent successfully · {{seconds}}s",
+    "submitting": "Sending...",
+    "success": "Message sent successfully.",
+    "turnstileRequired": "Please complete the verification widget before sending.",
+    "turnstileError": "Verification failed. Please refresh the widget and try again.",
+    "errorRateLimited": "Too many attempts. Please wait {{retryAfter}} seconds before trying again.",
+    "errorIdempotencyConflict": "A message with this reference was already submitted with different content.",
+    "errorServer": "Something went wrong. Please try again later.",
+    "errorNetwork": "Network error. Please check your connection and try again."
   },
   "validation": {
     "nameMin": "Name must contain at least 5 characters",

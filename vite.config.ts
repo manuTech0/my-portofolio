@@ -20,7 +20,10 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: true
+    allowedHosts: true,
+    proxy: {
+      "/api": "http://localhost:3001",
+    },
   },
   build: {
     target: "esnext",
