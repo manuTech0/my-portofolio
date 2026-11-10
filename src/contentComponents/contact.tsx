@@ -113,8 +113,8 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
   const apiUrl = `${apiBase}/contact`
   const sessionUrl = `${apiBase}/session`
 
-  // Turnstile is disabled in development or when no site key is configured.
-  const isTurnstileDisabled = import.meta.env.DEV || !siteKey
+  // Widget renders whenever a site key is configured (dev included).
+  const isTurnstileDisabled = !siteKey
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [cooldown, setCooldown] = useState(0)

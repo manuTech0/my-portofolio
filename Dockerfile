@@ -7,6 +7,11 @@ COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 FROM deps AS build
+# VITE_ vars are baked at build time; .env is not shipped in the image (context-ignored)
+ARG VITE_TURNSTILE_SITE_KEY
+ARG VITE_API_URL
+ENV VITE_TURNSTILE_SITE_KEY=${VITE_TURNSTILE_SITE_KEY:-}
+ENV VITE_API_URL=${VITE_API_URL:-/api}
 COPY . .
 RUN bun run build
 
