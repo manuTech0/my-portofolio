@@ -325,6 +325,7 @@ export default function Contact(props: React.DetailedHTMLProps<React.HTMLAttribu
               {!isTurnstileDisabled && (
                 <Turnstile
                   siteKey={siteKey!}
+                  options={{ action: "contact" }}
                   onSuccess={(token: string) => {
                     setTurnstileToken(token)
                     setServerError("")
